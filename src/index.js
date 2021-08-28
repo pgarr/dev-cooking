@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import createSagaMiddleware from "redux-saga";
+import firebase from "firebase/app";
 
 import "./index.css";
 import App from "./components/App/App";
@@ -42,6 +43,18 @@ const app = (
     </Provider>
   </React.StrictMode>
 );
+
+const firebaseConfig = {
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId,
+};
+
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(app, document.getElementById("root"));
 
