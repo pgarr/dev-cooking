@@ -1,3 +1,5 @@
+export const SET_RECIPES = "SET_RECIPES";
+
 export const SET_SEARCH_Q = "SET_SEARCH_Q";
 export const SET_SEARCH_FUNCTION = "SET_SEARCH_FUNCTION";
 export const SET_SEARCH_BADGES = "SET_SEARCH_BADGES";

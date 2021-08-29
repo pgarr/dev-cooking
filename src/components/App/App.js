@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faClock,
@@ -11,16 +10,18 @@ import {
 import { faStar as farFaStar } from "@fortawesome/free-regular-svg-icons";
 
 import Layout from "../Layout/Layout";
-import * as actions from "../../store/actions/index";
 import RoutesList from "./RoutesList";
+import { FirebaseContext } from "../../firebase/firebase";
 
-const App = ({ onTryAutoSingup }) => {
+const App = () => {
   // awesome icons library
   library.add(faClock, faPlus, farFaStar, fasFaStar, faUser);
 
+  const { api } = useContext(FirebaseContext);
+
   useEffect(() => {
-    onTryAutoSingup();
-  }, [onTryAutoSingup]);
+    api.setRecipeListener();
+  });
 
   return (
     <Layout>
@@ -29,14 +30,4 @@ const App = ({ onTryAutoSingup }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTryAutoSingup: () => dispatch(actions.authCheckState()),
-  };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(App);

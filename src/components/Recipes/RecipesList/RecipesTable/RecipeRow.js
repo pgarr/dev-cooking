@@ -1,7 +1,6 @@
 import React from "react";
 
 import DifficultySymbol from "../../../UI/DifficultySymbol/DifficultySymbol";
-import StatusBadge from "../../../UI/StatusBadge/StatusBadge";
 
 const RecipeRow = ({ index, title, time, difficulty, clicked, status }) => {
   return (
@@ -12,11 +11,6 @@ const RecipeRow = ({ index, title, time, difficulty, clicked, status }) => {
       <td>
         {difficulty ? <DifficultySymbol difficulty={difficulty} /> : null}
       </td>
-      {status !== null && (
-        <td>
-          <StatusBadge status={status} />
-        </td>
-      )}
     </tr>
   );
 };

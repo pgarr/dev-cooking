@@ -1,17 +1,16 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import createSagaMiddleware from "redux-saga";
-import firebase from "firebase/app";
+import FirebaseProvider from "./firebase/firebase";
 
 import "./index.css";
 import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
-import authReducer from "./store/reducers/auth";
+import recipesReducer from "./store/reducers/recipes";
 import searchReducer from "./store/reducers/search";
 import { watchAuth } from "./store/sagas/index";
 
@@ -21,7 +20,7 @@ const composeEnhancers =
     : null || compose;
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  recipes: recipesReducer,
   search: searchReducer,
 });
 
@@ -37,24 +36,14 @@ sagaMiddleware.run(watchAuth);
 const app = (
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <FirebaseProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </FirebaseProvider>
     </Provider>
   </React.StrictMode>
 );
-
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId,
-};
-
-firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(app, document.getElementById("root"));
 
