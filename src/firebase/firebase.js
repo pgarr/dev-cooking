@@ -4,7 +4,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { useDispatch } from "react-redux";
 
 import firebaseConfig from "./firebaseConfig";
-import { setRecipes } from "../store/actions/index";
+import { setRecipes, startLoading, stopLoading } from "../store/actions/index";
 
 const FirebaseContext = createContext(null);
 export { FirebaseContext };
@@ -30,6 +30,7 @@ export default ({ children }) => {
   }
 
   function setRecipeListener() {
+    dispatch(startLoading());
     const recipesRef = ref(firebase.database, "recipes");
     onValue(recipesRef, (snapshot) => {
       const vals = snapshot.val();
@@ -41,6 +42,7 @@ export default ({ children }) => {
         });
       }
       dispatch(setRecipes(recipesList));
+      dispatch(stopLoading());
     });
   }
 

@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
 import RecipesTable from "./RecipesTable/RecipesTable";
 
-const RecipesList = ({ recipes, history }) => {
+const RecipesList = ({ loading, recipes, history }) => {
   const recipeSelectedHandler = (id) => {
     history.push({ pathname: "/recipes/" + id });
   };
 
   return (
-    <LoadingContainer isLoading={false}>
+    <LoadingContainer isLoading={loading}>
       <RecipesTable recipes={recipes} onSelectRecipe={recipeSelectedHandler} />
     </LoadingContainer>
   );
@@ -19,6 +19,7 @@ const RecipesList = ({ recipes, history }) => {
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes.recipes,
+    loading: state.recipes.loading,
   };
 };
 
