@@ -29,7 +29,6 @@ export default ({ children }) => {
     };
   }
 
-  // TODO: is listener really needed? It opens WS to firestore
   function setRecipeListener() {
     const recipesRef = ref(firebase.database, "recipes");
     onValue(recipesRef, (snapshot) => {
@@ -41,21 +40,9 @@ export default ({ children }) => {
           id: key,
         });
       }
-      console.log(recipesList);
       dispatch(setRecipes(recipesList));
     });
   }
-  // firebase.database.ref("recipes").on("value", (snapshot) => {
-  //   const vals = snapshot.val();
-  //   let recipesList = [];
-  //   for (var key in vals) {
-  //     recipesList.push({
-  //       ...vals[key],
-  //       id: key,
-  //     });
-  //   }
-  //   dispatch(setRecipes(recipesList));
-  // });
 
   return (
     <FirebaseContext.Provider value={firebase}>
