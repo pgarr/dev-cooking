@@ -24,4 +24,10 @@ yarn-debug.log*
 yarn-error.log*
 debug.log
 
+# firebase
+/.firebase
+.firebaserc
+database.rules.json
+
 sample-data.json
+
