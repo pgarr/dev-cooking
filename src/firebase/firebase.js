@@ -34,14 +34,7 @@ export default ({ children }) => {
     const recipesRef = ref(firebase.database, "recipes");
     onValue(recipesRef, (snapshot) => {
       const vals = snapshot.val();
-      let recipesList = [];
-      for (var key in vals) {
-        recipesList.push({
-          ...vals[key],
-          id: key,
-        });
-      }
-      dispatch(setRecipes(recipesList));
+      dispatch(setRecipes(vals));
       dispatch(stopLoading());
     });
   }

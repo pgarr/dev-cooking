@@ -5,9 +5,8 @@ import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
 import RecipeCard from "./RecipeCard/RecipeCard";
 
 const RecipeDetails = ({ loading, recipes, match }) => {
-  const selectedRecipe = recipes.find(
-    (recipe) => recipe.id === match.params.id
-  );
+  // eslint-disable-next-line eqeqeq
+  const selectedRecipe = recipes.find((recipe) => recipe.id == match.params.id);
 
   return (
     <LoadingContainer isLoading={loading}>
