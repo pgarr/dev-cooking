@@ -6,15 +6,15 @@ import { useDispatch } from "react-redux";
 import firebaseConfig from "./firebaseConfig";
 import { setRecipes, startLoading, stopLoading } from "../store/actions/index";
 
-const FirebaseContext = createContext(null);
+const FirebaseContext = createContext();
 export { FirebaseContext };
 
-export default ({ children }) => {
-  let firebase = {
-    app: null,
-    database: null,
-  };
+let firebase = {
+  app: null,
+  database: null,
+};
 
+const FirebaseProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   if (!getApps().length) {
@@ -45,3 +45,5 @@ export default ({ children }) => {
     </FirebaseContext.Provider>
   );
 };
+
+export default FirebaseProvider;
