@@ -16,7 +16,6 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: false };
     case actionTypes.SET_INGREDIENTS:
       return { ...state, ingredients: action.ingredients };
-      return;
     default:
       return state;
   }
