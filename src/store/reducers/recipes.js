@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   recipes: [],
   loading: true,
+  ingredients: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case actionTypes.STOP_LOADING:
       return { ...state, loading: false };
+    case actionTypes.SET_INGREDIENTS:
+      return { ...state, ingredients: action.ingredients };
+      return;
     default:
       return state;
   }

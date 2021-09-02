@@ -4,7 +4,13 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { useDispatch } from "react-redux";
 
 import firebaseConfig from "./firebaseConfig";
-import { setRecipes, startLoading, stopLoading } from "../store/actions/index";
+import {
+  setRecipes,
+  startLoading,
+  stopLoading,
+  setIngredients,
+} from "../store/actions/index";
+import { getUniqueIngredients } from "./helpers";
 
 const FirebaseContext = createContext();
 export { FirebaseContext };
@@ -33,9 +39,11 @@ const FirebaseProvider = ({ children }) => {
     dispatch(startLoading());
     const recipesRef = ref(firebase.database, "recipes");
     onValue(recipesRef, (snapshot) => {
-      const vals = snapshot.val();
-      dispatch(setRecipes(vals));
+      const recipes = snapshot.val();
+      dispatch(setRecipes(recipes));
       dispatch(stopLoading());
+      const ingredients = getUniqueIngredients(recipes);
+      dispatch(setIngredients(ingredients));
     });
   }
 

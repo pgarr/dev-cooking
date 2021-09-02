@@ -18,3 +18,10 @@ export const stopLoading = () => {
     type: actionTypes.STOP_LOADING,
   };
 };
+
+export const setIngredients = (ingredients) => {
+  return {
+    type: actionTypes.SET_INGREDIENTS,
+    ingredients,
+  };
+};
