@@ -1,12 +1,5 @@
 import * as actionTypes from "./actionTypes";
 
-export const setRecipes = (recipes) => {
-  return {
-    type: actionTypes.SET_RECIPES,
-    recipes,
-  };
-};
-
 export const startLoading = () => {
   return {
     type: actionTypes.START_LOADING,
@@ -19,9 +12,9 @@ export const stopLoading = () => {
   };
 };
 
-export const setIngredients = (ingredients) => {
+export const setData = (data) => {
   return {
-    type: actionTypes.SET_INGREDIENTS,
-    ingredients,
+    type: actionTypes.SET_DATA,
+    data,
   };
 };

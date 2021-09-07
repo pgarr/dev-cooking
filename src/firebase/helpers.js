@@ -1,13 +1,21 @@
-import { capitalize } from "lodash";
+import { capitalize, noop } from "lodash";
 
-export const getUniqueIngredients = (recipes) => {
+export const prepareData = (recipes) => {
+  const categories = [];
   const ingredients = [];
   recipes.forEach((recipe) => {
-    ingredients.push(recipe.ingredients);
+    recipe.ingredients ? ingredients.push(recipe.ingredients) : noop();
+    recipe.categories ? categories.push(recipe.categories) : noop();
   });
-  return [
-    ...new Set(
-      ingredients.flat().map((ingredient) => capitalize(ingredient.title))
-    ),
-  ].sort();
+  return {
+    categories: [
+      ...new Set(categories.flat().map((category) => capitalize(category))),
+    ].sort(),
+    ingredients: [
+      ...new Set(
+        ingredients.flat().map((ingredient) => capitalize(ingredient.title))
+      ),
+    ].sort(),
+    recipes,
+  };
 };

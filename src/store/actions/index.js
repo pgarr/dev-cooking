@@ -1,7 +1,2 @@
-export {
-  setRecipes,
-  startLoading,
-  stopLoading,
-  setIngredients,
-} from "./recipes";
+export { startLoading, stopLoading, setData } from "./recipes";
 export { setSearchQ, setSearchFunction, setSearchBadges } from "./search";
