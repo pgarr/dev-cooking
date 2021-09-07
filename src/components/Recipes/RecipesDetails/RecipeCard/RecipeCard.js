@@ -3,9 +3,9 @@ import { Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./RecipeCard.module.css";
-import DifficultySymbol from "../../../UI/DifficultySymbol/DifficultySymbol";
 import IngredientList from "./IngredientList/IngredientList";
 import PreparationBox from "./PreparationBox/PreparationBox";
+import CategoriesBar from "../../../UI/CategoriesBar/CategoriesBar";
 
 const RecipeCard = ({ recipe }) => {
   return (
@@ -16,20 +16,14 @@ const RecipeCard = ({ recipe }) => {
         </Col>
       </Row>
       <Row>
-        <Col>Autor: {recipe.author}</Col>
-      </Row>
-      <Row>
+        {
+          <Col xs={2}>
+            <CategoriesBar categories={recipe.categories}></CategoriesBar>
+          </Col>
+        }
         {recipe.time ? (
           <Col xs={2}>
             <FontAwesomeIcon icon="clock" /> {recipe.time}'
-          </Col>
-        ) : null}
-        {recipe.difficulty ? (
-          <Col xs={2}>
-            <React.Fragment>
-              <span>Trudność: </span>
-              <DifficultySymbol difficulty={recipe.difficulty} />
-            </React.Fragment>
           </Col>
         ) : null}
       </Row>
@@ -43,7 +37,6 @@ const RecipeCard = ({ recipe }) => {
           {recipe.preparation && (
             <PreparationBox preparation={recipe.preparation} />
           )}
-          {recipe.link && <a href={recipe.link}>Źródło</a>}
         </Col>
       </Row>
     </React.Fragment>

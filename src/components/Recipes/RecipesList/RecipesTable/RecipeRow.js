@@ -1,16 +1,13 @@
-import React from "react";
+import CategoriesBar from "../../../UI/CategoriesBar/CategoriesBar";
 
-import DifficultySymbol from "../../../UI/DifficultySymbol/DifficultySymbol";
-
-const RecipeRow = ({ index, title, time, difficulty, clicked, status }) => {
+const RecipeRow = ({ title, time, categories, clicked }) => {
   return (
     <tr onClick={clicked}>
-      <th scope="row">{index}</th>
       <td>{title}</td>
-      <td>{time ? time + "'" : null}</td>
       <td>
-        {difficulty ? <DifficultySymbol difficulty={difficulty} /> : null}
+        <CategoriesBar categories={categories}></CategoriesBar>
       </td>
+      <td>{time ? time + "'" : null}</td>
     </tr>
   );
 };

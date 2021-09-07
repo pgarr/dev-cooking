@@ -1,11 +1,9 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 
-import styles from "./LoadingContainer.module.css";
-
 const LoadingContainer = ({ isLoading, children }) => {
   const display = isLoading ? (
-    <div className={styles.Center}>
+    <div>
       <Spinner animation="border" role="status">
         <span className="sr-only">Loading...</span>
       </Spinner>
