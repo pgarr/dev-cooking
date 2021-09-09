@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
-import IngredientList from "./IngredientList/IngredientList";
-import PreparationBox from "./PreparationBox/PreparationBox";
-import CategoriesBar from "../../../UI/CategoriesBar/CategoriesBar";
+import IngredientList from "./IngredientList";
+import PreparationBox from "./PreparationBox";
+import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
 
 const Data = styled.div`
   display: flex;

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
-import RecipesTable from "./RecipesTable/RecipesTable";
+import RecipesTable from "./RecipesTable";
 
 const RecipesList = ({ loading, recipes, history }) => {
   const recipeSelectedHandler = (id) => {

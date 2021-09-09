@@ -1,4 +1,4 @@
-import CategoriesBar from "../../../UI/CategoriesBar/CategoriesBar";
+import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
 
 const RecipeRow = ({ title, time, categories, clicked }) => {
   return (

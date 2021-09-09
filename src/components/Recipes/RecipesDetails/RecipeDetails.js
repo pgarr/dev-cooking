@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
-import RecipeCard from "./RecipeCard/RecipeCard";
+import RecipeCard from "./RecipeCard";
 
 const RecipeDetails = ({ loading, recipes, match }) => {
   // eslint-disable-next-line eqeqeq
