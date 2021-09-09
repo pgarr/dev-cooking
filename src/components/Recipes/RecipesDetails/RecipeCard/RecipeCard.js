@@ -1,45 +1,55 @@
-import React from "react";
-import { Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
 
-import styles from "./RecipeCard.module.css";
 import IngredientList from "./IngredientList/IngredientList";
 import PreparationBox from "./PreparationBox/PreparationBox";
 import CategoriesBar from "../../../UI/CategoriesBar/CategoriesBar";
 
+const Data = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 40px;
+
+  @media only all and (min-width: 1000px) {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+`;
+
+const Categories = styled(CategoriesBar)`
+  display: inline;
+  margin-right: 20px;
+`;
+
+const Ingredients = styled(IngredientList)`
+  max-width: 500px;
+
+  @media only all and (min-width: 1000px) {
+    min-width: 450px;
+  }
+`;
+
 const RecipeCard = ({ recipe }) => {
   return (
-    <React.Fragment>
-      <Row>
-        <Col>
-          <h2>{recipe.title}</h2>
-        </Col>
-      </Row>
-      <Row>
-        {
-          <Col xs={2}>
-            <CategoriesBar categories={recipe.categories}></CategoriesBar>
-          </Col>
-        }
-        {recipe.time ? (
-          <Col xs={2}>
-            <FontAwesomeIcon icon="clock" /> {recipe.time}'
-          </Col>
-        ) : null}
-      </Row>
-      <Row className={styles.Data}>
+    <>
+      <h2>{recipe.title}</h2>
+      <Categories categories={recipe.categories}></Categories>
+      {recipe.time ? (
+        <span>
+          <FontAwesomeIcon icon="clock" /> {recipe.time}'
+        </span>
+      ) : null}
+      <Data>
         {recipe.ingredients.length > 0 ? (
-          <Col xs lg="4">
-            <IngredientList ingredients={recipe.ingredients} />
-          </Col>
+          <Ingredients ingredients={recipe.ingredients} />
         ) : null}
-        <Col xs lg="8">
-          {recipe.preparation && (
-            <PreparationBox preparation={recipe.preparation} />
-          )}
-        </Col>
-      </Row>
-    </React.Fragment>
+        {recipe.preparation && (
+          <PreparationBox preparation={recipe.preparation} />
+        )}
+      </Data>
+    </>
   );
 };
 

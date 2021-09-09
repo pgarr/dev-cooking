@@ -7,7 +7,6 @@ import RecipeCard from "./RecipeCard/RecipeCard";
 const RecipeDetails = ({ loading, recipes, match }) => {
   // eslint-disable-next-line eqeqeq
   const selectedRecipe = recipes.find((recipe) => recipe.id == match.params.id);
-
   return (
     <LoadingContainer isLoading={loading}>
       <RecipeCard recipe={selectedRecipe} />

@@ -1,12 +1,11 @@
-import React from "react";
 import { Table } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 import IngredientRow from "./IngredientRow";
 
-const IngredientList = ({ ingredients }) => {
+const IngredientList = ({ className, ingredients }) => {
   return (
-    <Table hover>
+    <Table className={className} hover>
       <thead>
         <tr>
           <th scope="col">Nazwa</th>
