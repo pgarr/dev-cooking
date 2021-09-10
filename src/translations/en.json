@@ -1,0 +1,10 @@
+{
+  "categories": {
+    "main": "dinner",
+    "snack": "snack",
+    "vegetarian": "vegetarian",
+    "drink": "drink",
+    "sweet": "sweet",
+    "spicy": "spicy"
+  }
+}

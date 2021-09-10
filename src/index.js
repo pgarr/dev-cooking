@@ -9,6 +9,7 @@ import FirebaseProvider from "./firebase/firebase";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
+import "./translations/i18n";
 import App from "./components/App/App";
 import recipesReducer from "./store/reducers/recipes";
 import searchReducer from "./store/reducers/search";

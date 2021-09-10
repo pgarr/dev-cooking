@@ -1,0 +1,10 @@
+{
+  "categories": {
+    "main": "danie główne",
+    "snack": "przekąska",
+    "vegetarian": "wegetariańskie",
+    "drink": "drink",
+    "sweet": "słodkie",
+    "spicy": "ostre"
+  }
+}

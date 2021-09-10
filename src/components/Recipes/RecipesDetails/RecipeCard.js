@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 import IngredientList from "./IngredientList";
@@ -38,7 +39,7 @@ const RecipeCard = ({ recipe }) => {
       <Categories categories={recipe.categories}></Categories>
       {recipe.time ? (
         <span>
-          <FontAwesomeIcon icon="clock" /> {recipe.time}'
+          <FontAwesomeIcon icon={faClock} /> {recipe.time}'
         </span>
       ) : null}
       <Data>

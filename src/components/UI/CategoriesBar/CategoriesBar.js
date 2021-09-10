@@ -1,6 +1,8 @@
 import CategoryIcon from "./CategoryIcon";
 
 const CategoriesBar = ({ categories, className }) => {
+  categories.sort();
+
   return (
     <div className={className}>
       {categories.map((category, index) => {
