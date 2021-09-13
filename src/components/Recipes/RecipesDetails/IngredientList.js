@@ -1,15 +1,17 @@
 import { Table } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 import IngredientRow from "./IngredientRow";
 
 const IngredientList = ({ className, ingredients }) => {
+  const { t } = useTranslation("translation", { keyPrefix: "ingredients" });
   return (
     <Table className={className} hover>
       <thead>
         <tr>
-          <th scope="col">Nazwa</th>
-          <th scope="col">Ilość</th>
+          <th scope="col">{t("name")}</th>
+          <th scope="col">{t("amount")}</th>
         </tr>
       </thead>
       <tbody>

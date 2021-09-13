@@ -1,8 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const Toolbar = ({ history }) => {
+  const { t } = useTranslation();
+
   const handleSelect = (eventKey) => {
     switch (eventKey) {
       case "recipes":
@@ -19,7 +22,7 @@ const Toolbar = ({ history }) => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto" onSelect={handleSelect}>
-          <Nav.Link eventKey="recipes">Przepisy</Nav.Link>
+          <Nav.Link eventKey="recipes">{t("recipes")}</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

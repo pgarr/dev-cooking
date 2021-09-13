@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Form, FormControl } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 import * as actions from "../../store/actions/index";
 
@@ -13,6 +14,8 @@ const SearchWidget = ({
   doSearch,
   onSetSearchBadges,
 }) => {
+  const { t } = useTranslation();
+
   const submitHandler = (event) => {
     event.preventDefault();
     onSetSearchBadges();
@@ -36,7 +39,7 @@ const SearchWidget = ({
         onChange={(event) => onSetSearchQ(event.target.value)}
       />
       <Button variant="outline-info" type="submit">
-        Szukaj
+        {t("search")}
       </Button>
     </Form>
   );
