@@ -12,8 +12,6 @@ import "./index.css";
 import "./translations/i18n";
 import App from "./components/App/App";
 import recipesReducer from "./store/reducers/recipes";
-import searchReducer from "./store/reducers/search";
-import { watchAuth } from "./store/sagas/index";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -22,7 +20,6 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   recipes: recipesReducer,
-  search: searchReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -31,8 +28,6 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
-
-sagaMiddleware.run(watchAuth);
 
 const app = (
   <React.StrictMode>
