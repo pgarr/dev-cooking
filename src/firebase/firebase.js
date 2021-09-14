@@ -4,7 +4,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { useDispatch } from "react-redux";
 
 import firebaseConfig from "./firebaseConfig";
-import { setData, startLoading } from "../store/actions/index";
+import { setData, startLoading } from "../store/slices/recipesSlice";
 import { prepareData } from "./helpers";
 
 const FirebaseContext = createContext();

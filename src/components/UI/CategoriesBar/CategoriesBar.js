@@ -1,11 +1,12 @@
 import CategoryIcon from "./CategoryIcon";
 
 const CategoriesBar = ({ categories, className }) => {
-  categories.sort();
+  const localCategories = [...categories];
+  localCategories.sort();
 
   return (
     <div className={className}>
-      {categories.map((category, index) => {
+      {localCategories.map((category, index) => {
         return (
           <CategoryIcon categoryName={category} key={index}></CategoryIcon>
         );

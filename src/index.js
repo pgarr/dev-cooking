@@ -3,31 +3,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose, combineReducers } from "redux";
-import createSagaMiddleware from "redux-saga";
 import FirebaseProvider from "./firebase/firebase";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
 import "./translations/i18n";
 import App from "./components/App/App";
-import recipesReducer from "./store/reducers/recipes";
-
-const composeEnhancers =
-  process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
-
-const rootReducer = combineReducers({
-  recipes: recipesReducer,
-});
-
-const sagaMiddleware = createSagaMiddleware();
-
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-);
+import store from "./store/store";
 
 const app = (
   <React.StrictMode>
