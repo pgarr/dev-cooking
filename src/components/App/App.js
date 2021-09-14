@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
-import Layout from "../Layout/Layout";
+import Layout from "./Layout";
 import RoutesList from "./RoutesList";
 import { FirebaseContext } from "../../firebase/firebase";
 

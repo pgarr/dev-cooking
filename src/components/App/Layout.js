@@ -1,24 +1,22 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import { Flip, ToastContainer } from "react-toastify";
+import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
 
-import styles from "./Layout.module.css";
-import Toolbar from "../Toolbar/Toolbar";
+import Toolbar from "../UI/Toolbar/Toolbar";
+
+const Content = styled.div`
+  margin: 40px auto 0px;
+  max-width: 1200px;
+  padding: 0 10px 0;
+`;
 
 const Layout = ({ children }) => (
-  <Container fluid>
-    <Row>
-      <Col className={styles.NavbarContainer}>
-        <Toolbar />
-      </Col>
-    </Row>
-    <Row>
-      <Col>
-        <main className={styles.Content}>{children}</main>
-      </Col>
+  <>
+    <Toolbar />
+    <Content>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar
         newestOnTop
@@ -29,8 +27,9 @@ const Layout = ({ children }) => (
         pauseOnHover
         transition={Flip}
       />
-    </Row>
-  </Container>
+      {children}
+    </Content>
+  </>
 );
 
 export default Layout;
