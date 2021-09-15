@@ -1,13 +1,12 @@
-import { Spinner } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import { SpinnerCircular } from "spinners-react";
 
 const LoadingSpinner = ({ className }) => {
-  const { t } = useTranslation();
-
   return (
-    <Spinner animation="border" role="status" className={className}>
-      <span className="sr-only">{t("loading")}</span>
-    </Spinner>
+    <SpinnerCircular
+      className={className}
+      color={"#2b07b8"}
+      secondaryColor={"#c9c6c5"}
+    />
   );
 };
 
