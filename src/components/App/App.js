@@ -10,7 +10,7 @@ const App = () => {
   const { api } = useContext(FirebaseContext);
   useEffect(() => {
     api.setRecipeListener();
-  });
+  }, [api]);
 
   return (
     <Layout>
