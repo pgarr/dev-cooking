@@ -3,7 +3,7 @@ import { Flip, ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
 
-import Toolbar from "../UI/Toolbar/Toolbar";
+import Toolbar from "../UI/Toolbar";
 
 const Content = styled.div`
   margin: 40px auto 0px;

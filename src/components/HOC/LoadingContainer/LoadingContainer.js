@@ -1,16 +1,16 @@
-import React from "react";
-import { Spinner } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+import LoadingSpinner from "../../UI/LoadingSpinner";
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const LoadingContainer = ({ isLoading, children }) => {
-  const { t } = useTranslation();
-
   const display = isLoading ? (
-    <div>
-      <Spinner animation="border" role="status">
-        <span className="sr-only">{t("loading")}</span>
-      </Spinner>
-    </div>
+    <Container>
+      <LoadingSpinner />
+    </Container>
   ) : (
     children
   );
