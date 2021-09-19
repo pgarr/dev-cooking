@@ -4,7 +4,7 @@ const LoadingSpinner = ({ className }) => {
   return (
     <SpinnerCircular
       className={className}
-      color={"#2b07b8"}
+      color={"#023fa1"}
       secondaryColor={"#c9c6c5"}
     />
   );

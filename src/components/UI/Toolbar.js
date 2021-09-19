@@ -2,6 +2,20 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+import BrandIcon from "./BrandIcon";
+
+const NavContainer = styled.div`
+  background: #023fa1;
+  width: 100%;
+`;
+
+const StyledNavbar = styled(Navbar)`
+  margin: auto;
+  max-width: 1200px;
+`;
+
+const brand = "<Cooking />";
 
 const Toolbar = ({ history }) => {
   const { t } = useTranslation();
@@ -17,15 +31,16 @@ const Toolbar = ({ history }) => {
   };
 
   return (
-    <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand>Cooking dev</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
+    <NavContainer>
+      <StyledNavbar variant="dark">
+        <Navbar.Brand>
+          <BrandIcon />
+        </Navbar.Brand>
         <Nav className="mr-auto" onSelect={handleSelect}>
           <Nav.Link eventKey="recipes">{t("recipes")}</Nav.Link>
         </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      </StyledNavbar>
+    </NavContainer>
   );
 };
 
