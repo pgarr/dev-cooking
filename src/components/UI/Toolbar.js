@@ -15,8 +15,6 @@ const StyledNavbar = styled(Navbar)`
   max-width: 1200px;
 `;
 
-const brand = "<Cooking />";
-
 const Toolbar = ({ history }) => {
   const { t } = useTranslation();
 
