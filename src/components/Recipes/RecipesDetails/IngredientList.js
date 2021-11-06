@@ -5,21 +5,18 @@ import { useTranslation } from "react-i18next";
 import IngredientRow from "./IngredientRow";
 
 const IngredientList = ({ className, ingredients }) => {
-  const { t } = useTranslation("translation", { keyPrefix: "ingredients" });
+  const { t } = useTranslation();
   return (
-    <Table className={className} hover>
-      <thead>
-        <tr>
-          <th scope="col">{t("name")}</th>
-          <th scope="col">{t("amount")}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ingredients.map((ingredient, index) => {
-          return <IngredientRow key={index} {...ingredient} />;
-        })}
-      </tbody>
-    </Table>
+    <div>
+      <h3>{t("ingredients_head")}</h3>
+      <Table className={className} hover>
+        <tbody>
+          {ingredients.map((ingredient, index) => {
+            return <IngredientRow key={index} {...ingredient} />;
+          })}
+        </tbody>
+      </Table>
+    </div>
   );
 };
 

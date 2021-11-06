@@ -7,6 +7,7 @@
     "sweet": "sweet",
     "spicy": "spicy"
   },
+  "ingredients_head": "ingredients",
   "ingredients": {
     "name": "Name",
     "amount": "Amount"

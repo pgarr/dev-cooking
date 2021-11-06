@@ -1,12 +1,19 @@
-import { toLower } from "lodash";
 import React from "react";
+import { toLower } from "lodash";
+import styled from "styled-components";
+
+const AmountCell = styled.td`
+  min-width: 80px;
+`;
 
 const IngredientRow = ({ title, amount, unit }) => {
   const lowerCaseUnit = toLower(unit);
   return (
     <tr>
       <td>{title}</td>
-      <td>{amount ? `${amount} ${lowerCaseUnit}` : lowerCaseUnit}</td>
+      <AmountCell>
+        {amount ? `${amount} ${lowerCaseUnit}` : lowerCaseUnit}
+      </AmountCell>
     </tr>
   );
 };
