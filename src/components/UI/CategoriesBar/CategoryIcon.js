@@ -28,17 +28,17 @@ const CategoryIcon = ({ categoryName }) => {
   const { t } = useTranslation("translation", { keyPrefix: "categories" });
 
   return (
-    <Span>
-      <OverlayTrigger
-        key={categoryName}
-        placement={"top"}
-        overlay={
-          <Tooltip id={`tooltip-${categoryName}`}>{t(categoryName)}</Tooltip>
-        }
-      >
+    <OverlayTrigger
+      key={categoryName}
+      placement={"top"}
+      overlay={
+        <Tooltip id={`tooltip-${categoryName}`}>{t(categoryName)}</Tooltip>
+      }
+    >
+      <Span>
         <FontAwesomeIcon icon={iconMap[categoryName]} />
-      </OverlayTrigger>
-    </Span>
+      </Span>
+    </OverlayTrigger>
   );
 };
 
