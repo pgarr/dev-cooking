@@ -1,4 +1,4 @@
-import { capitalize, noop } from "lodash";
+import { capitalize, noop, toLower } from "lodash";
 
 export const prepareData = (recipes) => {
   const categories = [];
@@ -9,7 +9,7 @@ export const prepareData = (recipes) => {
   });
   return {
     categories: [
-      ...new Set(categories.flat().map((category) => capitalize(category))),
+      ...new Set(categories.flat().map((category) => toLower(category))),
     ].sort(),
     ingredients: [
       ...new Set(

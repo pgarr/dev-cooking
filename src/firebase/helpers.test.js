@@ -57,7 +57,7 @@ test('"helpers.prepareData" returns unique categories names', () => {
       title: "test3",
     },
   ];
-  expect(prepareData(recipes).categories).toStrictEqual(["A", "B", "D"]);
+  expect(prepareData(recipes).categories).toStrictEqual(["a", "b", "d"]);
 });
 
 test('"helpers.prepareData" returns unmodified recipes', () => {

@@ -16,5 +16,6 @@
   "preparation": "Preparation",
   "recipes": "Recipes",
   "search": "search",
-  "name": "Name"
+  "name": "Name",
+  "categories_name": "Categories"
 }
