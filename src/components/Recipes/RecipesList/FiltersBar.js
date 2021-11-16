@@ -17,9 +17,27 @@ const Container = styled.div`
   padding-bottom: 15px;
 `;
 
-const Input = styled.input`
-  max-width: 800px;
+const StyledInput = styled.input`
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  width: 50%;
+
+  &:focus {
+    border-color: #2684ff;
+    border-width: 2px;
+    outline: none;
+  }
 `;
+
+const selectStyles = {
+  container: (provided, state) => {
+    const width = "50%";
+
+    return { ...provided, width };
+  },
+};
 
 const FiltersBar = ({ nameFilter, categoriesList }) => {
   const dispatch = useDispatch();
@@ -48,13 +66,14 @@ const FiltersBar = ({ nameFilter, categoriesList }) => {
 
   return (
     <Container>
-      <Input
+      <StyledInput
         type="text"
         placeholder={t("name")}
         value={nameFilter}
         onChange={onFilterNameChange}
-      ></Input>
+      ></StyledInput>
       <Select
+        styles={selectStyles}
         placeholder={t("categories_name") + "..."}
         closeMenuOnSelect={false}
         isMulti
