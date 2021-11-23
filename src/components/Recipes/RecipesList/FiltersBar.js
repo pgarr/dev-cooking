@@ -39,7 +39,7 @@ const selectStyles = {
   },
 };
 
-const FiltersBar = ({ nameFilter, categoriesList }) => {
+const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -50,10 +50,7 @@ const FiltersBar = ({ nameFilter, categoriesList }) => {
   };
 
   const onFilterCategoriesChange = (selectedOptions) => {
-    const optionsList = selectedOptions.map((option) => {
-      return option.value;
-    });
-    dispatch(filterCategories(optionsList));
+    dispatch(filterCategories(selectedOptions));
   };
 
   useEffect(() => {
@@ -79,6 +76,7 @@ const FiltersBar = ({ nameFilter, categoriesList }) => {
         isMulti
         options={categoriesOptions}
         onChange={onFilterCategoriesChange}
+        selectedOptions={categoriesSelected}
       />
     </Container>
   );
@@ -88,6 +86,7 @@ const mapStateToProps = (state) => {
   return {
     nameFilter: state.filters.name,
     categoriesList: state.recipes.categories,
+    categoriesSelected: state.filters.categories,
   };
 };
 

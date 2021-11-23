@@ -8,8 +8,9 @@ import RecipesTable from "./RecipesTable";
 
 const isCategoriesMatched = (categoriesFiltered, recipeCategories) => {
   if (categoriesFiltered.length === 0) return true;
+  const categoriesValues = categoriesFiltered.map((category) => category.value);
   return recipeCategories.some(
-    (category) => categoriesFiltered.indexOf(category) >= 0
+    (category) => categoriesValues.indexOf(category) >= 0
   );
 };
 
