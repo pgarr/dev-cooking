@@ -10,7 +10,6 @@ import {
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
-  border-bottom: solid 1px;
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
@@ -44,6 +43,7 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
   const { t } = useTranslation();
 
   const [categoriesOptions, setCategoriesOptions] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
 
   const onFilterNameChange = (event) => {
     dispatch(filterName(event.target.value));
@@ -62,23 +62,32 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
   }, [categoriesList, t]);
 
   return (
-    <Container>
-      <StyledInput
-        type="text"
-        placeholder={t("name")}
-        value={nameFilter}
-        onChange={onFilterNameChange}
-      ></StyledInput>
-      <Select
-        styles={selectStyles}
-        placeholder={t("categories_name") + "..."}
-        closeMenuOnSelect={false}
-        isMulti
-        options={categoriesOptions}
-        onChange={onFilterCategoriesChange}
-        selectedOptions={categoriesSelected}
-      />
-    </Container>
+    <>
+      <button
+        onClick={() => setShowFilters((prevShowFilters) => !prevShowFilters)}
+      >
+        {t("show_filters")}
+      </button>
+      {showFilters && (
+        <Container>
+          <StyledInput
+            type="text"
+            placeholder={t("name")}
+            value={nameFilter}
+            onChange={onFilterNameChange}
+          ></StyledInput>
+          <Select
+            styles={selectStyles}
+            placeholder={t("categories_name") + "..."}
+            closeMenuOnSelect={false}
+            isMulti
+            options={categoriesOptions}
+            onChange={onFilterCategoriesChange}
+            value={categoriesSelected}
+          />
+        </Container>
+      )}
+    </>
   );
 };
 

@@ -17,5 +17,6 @@
   "recipes": "Przepisy",
   "search": "Szukaj",
   "name": "Nazwa",
-  "categories_name": "Kategorie"
+  "categories_name": "Kategorie",
+  "show_filters": "Pokaż filtry"
 }

@@ -17,5 +17,6 @@
   "recipes": "Recipes",
   "search": "search",
   "name": "Name",
-  "categories_name": "Categories"
+  "categories_name": "Categories",
+  "show_filters": "Show filters"
 }
