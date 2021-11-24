@@ -9,6 +9,30 @@ import {
 } from "../../../store/slices/filtersSlice";
 import { useEffect, useState } from "react";
 
+const FiltersButton = styled.button`
+  background-color: #3d94f6;
+  border-radius: 2px;
+  border: 1px solid #337fed;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 1px 30px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #1570cd;
+  margin: 8px;
+
+  &:hover {
+    background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+    background-color: #1e62d0;
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   gap: 10px;
@@ -63,11 +87,11 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
 
   return (
     <>
-      <button
+      <FiltersButton
         onClick={() => setShowFilters((prevShowFilters) => !prevShowFilters)}
       >
         {t("show_filters")}
-      </button>
+      </FiltersButton>
       {showFilters && (
         <Container>
           <StyledInput
