@@ -1,22 +1,56 @@
-import { Table } from "react-bootstrap";
+import React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+import { toLower } from "lodash";
 
-import IngredientRow from "./IngredientRow";
+const Container = styled.div`
+  margin: 0 20px;
+`;
+const Table = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 600px;
+  width: auto;
+
+  @media only all and (min-width: 1000px) {
+    min-width: 400px;
+  }
+`;
+
+const Cell = styled.div`
+  line-height: 1;
+  margin-bottom: 15px;
+`;
+
+const TitleCell = styled(Cell)`
+  flex: 3 1 75%;
+  padding-right: 20px;
+`;
+
+const AmountCell = styled(Cell)`
+  flex: 1 1 25%;
+  min-width: 80px;
+`;
 
 const IngredientList = ({ className, ingredients }) => {
   const { t } = useTranslation();
   return (
-    <div>
+    <Container>
       <h3>{t("ingredients_head")}</h3>
-      <Table className={className} hover>
-        <tbody>
-          {ingredients.map((ingredient, index) => {
-            return <IngredientRow key={index} {...ingredient} />;
-          })}
-        </tbody>
+      <Table>
+        {ingredients.map((ingredient, index) => {
+          return (
+            <React.Fragment key={index}>
+              <TitleCell>{ingredient.title}</TitleCell>
+              <AmountCell>{`${ingredient.amount || ""} ${toLower(
+                ingredient.unit
+              )}`}</AmountCell>
+            </React.Fragment>
+          );
+        })}
       </Table>
-    </div>
+    </Container>
   );
 };
 

@@ -9,7 +9,7 @@ import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
 const Data = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
   align-items: center;
   margin-top: 40px;
 
@@ -24,14 +24,6 @@ const Categories = styled(CategoriesBar)`
   margin-right: 20px;
 `;
 
-const Ingredients = styled(IngredientList)`
-  max-width: 500px;
-
-  @media only all and (min-width: 1000px) {
-    min-width: 450px;
-  }
-`;
-
 const RecipeCard = ({ recipe }) => {
   return (
     <>
@@ -44,7 +36,7 @@ const RecipeCard = ({ recipe }) => {
       ) : null}
       <Data>
         {recipe.ingredients.length > 0 ? (
-          <Ingredients ingredients={recipe.ingredients} />
+          <IngredientList ingredients={recipe.ingredients} />
         ) : null}
         {recipe.preparation && (
           <PreparationBox preparation={recipe.preparation} />
