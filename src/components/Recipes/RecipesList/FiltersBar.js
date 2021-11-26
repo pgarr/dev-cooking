@@ -38,6 +38,10 @@ const Container = styled.div`
   gap: 10px;
   margin-bottom: 30px;
   padding-bottom: 15px;
+
+  @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -45,20 +49,26 @@ const StyledInput = styled.input`
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
+  height: 48px;
+  padding: 10px;
   width: 50%;
 
   &:focus {
     border-color: #2684ff;
     border-width: 2px;
-    outline: none;
+  }
+
+  @media (max-width: 1100px) {
+    width: 100%;
   }
 `;
 
 const selectStyles = {
   container: (provided, state) => {
-    const width = "50%";
+    const flexGrow = 1;
+    const height = "49px";
 
-    return { ...provided, width };
+    return { ...provided, flexGrow, height };
   },
 };
 
