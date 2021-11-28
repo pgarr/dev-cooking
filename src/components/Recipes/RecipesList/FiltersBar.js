@@ -6,6 +6,7 @@ import Select from "react-select";
 import {
   filterName,
   filterCategories,
+  filterIngredientsHas,
 } from "../../../store/slices/filtersSlice";
 import { useEffect, useState } from "react";
 
@@ -49,7 +50,7 @@ const StyledInput = styled.input`
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
-  height: 48px;
+  height: 49px;
   padding: 10px;
   width: 50%;
 
@@ -72,11 +73,18 @@ const selectStyles = {
   },
 };
 
-const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
+const FiltersBar = ({
+  nameFilter,
+  categoriesList,
+  categoriesSelected,
+  ingredientsList,
+  ingredientsHasSelected,
+}) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const [categoriesOptions, setCategoriesOptions] = useState([]);
+  const [ingredientsOptions, setIngredientsOptions] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
 
   const onFilterNameChange = (event) => {
@@ -87,6 +95,10 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
     dispatch(filterCategories(selectedOptions));
   };
 
+  const onFilterIngredientsHasChange = (selectedOptions) => {
+    dispatch(filterIngredientsHas(selectedOptions));
+  };
+
   useEffect(() => {
     const options = categoriesList.map((category) => {
       return { value: category, label: t(`categories.${category}`) };
@@ -94,6 +106,14 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
 
     setCategoriesOptions(options);
   }, [categoriesList, t]);
+
+  useEffect(() => {
+    const options = ingredientsList.map((ingredient) => {
+      return { value: ingredient, label: ingredient };
+    });
+
+    setIngredientsOptions(options);
+  }, [ingredientsList, t]);
 
   return (
     <>
@@ -119,6 +139,15 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
             onChange={onFilterCategoriesChange}
             value={categoriesSelected}
           />
+          <Select
+            styles={selectStyles}
+            placeholder={t("ingredients_head") + "..."}
+            closeMenuOnSelect={false}
+            isMulti
+            options={ingredientsOptions}
+            onChange={onFilterIngredientsHasChange}
+            value={ingredientsHasSelected}
+          />
         </Container>
       )}
     </>
@@ -130,6 +159,8 @@ const mapStateToProps = (state) => {
     nameFilter: state.filters.name,
     categoriesList: state.recipes.categories,
     categoriesSelected: state.filters.categories,
+    ingredientsList: state.recipes.ingredients,
+    ingredientsHasSelected: state.filters.ingredientsHas,
   };
 };
 

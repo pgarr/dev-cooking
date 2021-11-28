@@ -5,6 +5,7 @@ export const filtersSlice = createSlice({
   initialState: {
     name: "",
     categories: [],
+    ingredientsHas: [],
   },
   reducers: {
     filterName: (state, action) => {
@@ -13,9 +14,16 @@ export const filtersSlice = createSlice({
     filterCategories: (state, action) => {
       state.categories = action.payload;
     },
+    filterIngredientsHas: (state, action) => {
+      state.ingredientsHas = action.payload;
+    },
   },
 });
 
-export const { filterName, filterCategories } = filtersSlice.actions;
+export const {
+  filterName,
+  filterCategories,
+  filterIngredientsHas,
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;

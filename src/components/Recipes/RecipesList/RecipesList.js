@@ -20,6 +20,7 @@ const RecipesList = ({
   history,
   nameFilter,
   categoriesFilter,
+  ingredientsFilter,
 }) => {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   useEffect(() => {
@@ -52,6 +53,7 @@ const mapStateToProps = (state) => {
     loading: state.recipes.loading,
     nameFilter: state.filters.name,
     categoriesFilter: state.filters.categories,
+    ingredientsFilter: state.filters.ingredientsHas,
   };
 };
 
