@@ -24,13 +24,14 @@ const Cell = styled.div`
 `;
 
 const TitleCell = styled(Cell)`
-  flex: 3 1 75%;
+  flex: 3 1 70%;
   padding-right: 20px;
 `;
 
 const AmountCell = styled(Cell)`
-  flex: 1 1 25%;
-  min-width: 80px;
+  flex: 1 1 30%;
+  min-width: 100px;
+  line-wrap
 `;
 
 const IngredientList = ({ className, ingredients }) => {
