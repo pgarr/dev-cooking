@@ -21,17 +21,26 @@ const Table = styled.div`
 const Cell = styled.div`
   line-height: 1;
   margin-bottom: 15px;
+  min-width: 100px;
+
+  @media only all and (max-width: 420px) {
+    min-width: 80px;
+  }
 `;
 
 const TitleCell = styled(Cell)`
   flex: 3 1 70%;
-  padding-right: 20px;
+  padding-right: 10px;
+
+  @media only all and (max-width: 420px) {
+    flex: 3 1 55%;
 `;
 
 const AmountCell = styled(Cell)`
   flex: 1 1 30%;
-  min-width: 100px;
-  line-wrap
+
+  @media only all and (max-width: 420px) {
+    flex: 1 1 45%;
 `;
 
 const IngredientList = ({ className, ingredients }) => {
