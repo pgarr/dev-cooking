@@ -1,6 +1,13 @@
 import React, { createContext } from "react";
 import { initializeApp, getApps } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
 
 import firebaseConfig from "./firebaseConfig";
@@ -17,15 +24,19 @@ let firebase = {
 
 const FirebaseProvider = ({ children }) => {
   const dispatch = useDispatch();
+  const googleProvider = new GoogleAuthProvider();
 
   if (!getApps().length) {
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const db = getDatabase();
     firebase = {
       app: app,
       database: db,
+      auth,
       api: {
         setRecipeListener,
+        auth: { signInWithGoogle, logout },
       },
     };
   }
@@ -38,6 +49,26 @@ const FirebaseProvider = ({ children }) => {
       const data = prepareData(recipes);
       dispatch(setData(data));
     });
+  }
+
+  onAuthStateChanged(firebase.auth, (user) => {
+    if (user) {
+      console.log(user);
+    } else {
+      console.log("Not logged in");
+    }
+  });
+
+  async function signInWithGoogle() {
+    try {
+      await signInWithPopup(firebase.auth, googleProvider);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function logout() {
+    await signOut(firebase.auth);
   }
 
   return (
