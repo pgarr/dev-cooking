@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { SpinnerCircular } from "spinners-react";
 
 const LoadingSpinner = ({ className }) => {
@@ -10,4 +11,7 @@ const LoadingSpinner = ({ className }) => {
   );
 };
 
-export default LoadingSpinner;
+export default styled(LoadingSpinner)`
+  display: block;
+  margin: 0 auto;
+`;

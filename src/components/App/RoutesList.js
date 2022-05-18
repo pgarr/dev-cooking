@@ -10,7 +10,7 @@ const RecipeDetails = lazy(() =>
 
 const RoutesList = () => {
   return (
-    <Suspense fallback={LoadingSpinner}>
+    <Suspense fallback={<LoadingSpinner />}>
       <Switch>
         <Route path="/recipes" exact component={RecipesList} />
         <Route path="/recipes/:id" component={RecipeDetails} />
