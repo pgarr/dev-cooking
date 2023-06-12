@@ -9,10 +9,10 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-
 import firebaseConfig from "./firebaseConfig";
 import { setData, startLoading } from "../store/slices/recipesSlice";
 import { prepareData } from "./helpers";
+import { setUsername, clearUsername } from "../store/slices/authSlice";
 
 const FirebaseContext = createContext();
 export { FirebaseContext };
@@ -53,15 +53,15 @@ const FirebaseProvider = ({ children }) => {
 
   onAuthStateChanged(firebase.auth, (user) => {
     if (user) {
-      console.log(user);
+      dispatch(setUsername(user.displayName));
     } else {
-      console.log("Not logged in");
+      dispatch(clearUsername());
     }
   });
 
   async function signInWithGoogle() {
     try {
-      await signInWithPopup(firebase.auth, googleProvider);
+      return signInWithPopup(firebase.auth, googleProvider);
     } catch (error) {
       console.log(error);
     }

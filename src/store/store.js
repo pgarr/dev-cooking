@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import filtersSlice from "./slices/filtersSlice";
-import recipesSlice from "./slices/recipesSlice";
+import filtersReducer from "./slices/filtersSlice";
+import recipesReducer from "./slices/recipesSlice";
+import authreducer from "./slices/authSlice";
 
 export default configureStore({
-  reducer: { recipes: recipesSlice, filters: filtersSlice },
+  reducer: {
+    recipes: recipesReducer,
+    filters: filtersReducer,
+    auth: authreducer,
+  },
 });

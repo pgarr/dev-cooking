@@ -18,5 +18,7 @@
   "search": "search",
   "name": "Name",
   "categories_name": "Categories",
-  "show_filters": "Filters"
+  "show_filters": "Filters",
+  "login": "Log in",
+  "logout": "Log out"
 }
