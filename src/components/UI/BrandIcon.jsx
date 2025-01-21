@@ -1,4 +1,4 @@
-import { ReactComponent as BrandImage } from "../../svg/dev-hat2.svg";
+import BrandImage from "../../svg/dev-hat2.svg?react";
 
 const BrandIcon = ({ size }) => {
   size = size || 2;

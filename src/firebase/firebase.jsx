@@ -14,8 +14,7 @@ import { setData, startLoading } from "../store/slices/recipesSlice";
 import { prepareData } from "./helpers";
 import { setUsername, clearUsername } from "../store/slices/authSlice";
 
-const FirebaseContext = createContext();
-export { FirebaseContext };
+export const FirebaseContext = createContext();
 
 let firebase = {
   app: null,
@@ -47,6 +46,7 @@ const FirebaseProvider = ({ children }) => {
     onValue(recipesRef, (snapshot) => {
       const recipes = snapshot.val();
       const data = prepareData(recipes);
+      console.log(data);
       dispatch(setData(data));
     });
   }
