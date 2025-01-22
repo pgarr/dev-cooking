@@ -1,4 +1,3 @@
-import React from "react";
 import { Flip, ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Button, Navbar, OverlayTrigger, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
@@ -13,7 +13,8 @@ const LogoutIcon = styled(FontAwesomeIcon)`
   padding: 2px 0 0 5px;
 `;
 
-const UserBadge = ({ username }) => {
+const UserBadge = () => {
+  const username = useSelector((state) => state.auth.username);
   const { t } = useTranslation();
   const { api } = useContext(FirebaseContext);
 
@@ -49,10 +50,4 @@ const UserBadge = ({ username }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
-
-export default connect(mapStateToProps)(UserBadge);
+export default UserBadge;

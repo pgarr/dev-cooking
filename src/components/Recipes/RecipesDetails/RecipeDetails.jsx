@@ -1,12 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
 import RecipeCard from "./RecipeCard";
 
-const RecipeDetails = ({ loading, recipes, match }) => {
-  // eslint-disable-next-line eqeqeq
-  const selectedRecipe = recipes.find((recipe) => recipe.id == match.params.id);
+const RecipeDetails = ({ match }) => {
+  const recipes = useSelector((state) => state.recipes.recipes);
+  const loading = useSelector((state) => state.recipes.loading);
+  const selectedRecipe = recipes.find(
+    (recipe) => recipe.id === match.params.id
+  );
   return (
     <LoadingContainer isLoading={loading}>
       <RecipeCard recipe={selectedRecipe} />
@@ -14,11 +16,4 @@ const RecipeDetails = ({ loading, recipes, match }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes.recipes,
-    loading: state.recipes.loading,
-  };
-};
-
-export default connect(mapStateToProps)(RecipeDetails);
+export default RecipeDetails;

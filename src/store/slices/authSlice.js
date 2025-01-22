@@ -9,7 +9,7 @@ export const authSlice = createSlice({
     setUsername: (state, action) => {
       state.username = action.payload;
     },
-    clearUsername: (state, action) => {
+    clearUsername: (state) => {
       state.username = null;
     },
   },

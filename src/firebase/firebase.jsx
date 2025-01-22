@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 import { initializeApp, getApps } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
 import {
@@ -46,7 +46,6 @@ const FirebaseProvider = ({ children }) => {
     onValue(recipesRef, (snapshot) => {
       const recipes = snapshot.val();
       const data = prepareData(recipes);
-      console.log(data);
       dispatch(setData(data));
     });
   }

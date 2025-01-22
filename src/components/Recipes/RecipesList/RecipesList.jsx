@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { toLower } from "lodash";
 
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
@@ -14,13 +14,12 @@ const isCategoriesMatched = (categoriesFiltered, recipeCategories) => {
   );
 };
 
-const RecipesList = ({
-  loading,
-  recipes,
-  history,
-  nameFilter,
-  categoriesFilter,
-}) => {
+const RecipesList = ({ history }) => {
+  const recipes = useSelector((state) => state.recipes.recipes);
+  const loading = useSelector((state) => state.recipes.loading);
+  const nameFilter = useSelector((state) => state.filters.name);
+  const categoriesFilter = useSelector((state) => state.filters.categories);
+
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   useEffect(() => {
     const recs = recipes.filter(
@@ -46,13 +45,4 @@ const RecipesList = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes.recipes,
-    loading: state.recipes.loading,
-    nameFilter: state.filters.name,
-    categoriesFilter: state.filters.categories,
-  };
-};
-
-export default connect(mapStateToProps)(RecipesList);
+export default RecipesList;

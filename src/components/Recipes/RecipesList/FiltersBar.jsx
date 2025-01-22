@@ -1,4 +1,5 @@
-import { connect, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Select from "react-select";
@@ -6,7 +7,6 @@ import {
   filterName,
   filterCategories,
 } from "../../../store/slices/filtersSlice";
-import { useEffect, useState } from "react";
 
 const FiltersButton = styled.button`
   background-color: #3d94f6;
@@ -71,8 +71,12 @@ const selectStyles = {
   },
 };
 
-const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
+const FiltersBar = () => {
   const dispatch = useDispatch();
+  const nameFilter = useSelector((state) => state.filters.name);
+  const categoriesList = useSelector((state) => state.recipes.categories);
+  const categoriesSelected = useSelector((state) => state.filters.categories);
+
   const { t } = useTranslation();
 
   const [categoriesOptions, setCategoriesOptions] = useState([]);
@@ -124,12 +128,4 @@ const FiltersBar = ({ nameFilter, categoriesList, categoriesSelected }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    nameFilter: state.filters.name,
-    categoriesList: state.recipes.categories,
-    categoriesSelected: state.filters.categories,
-  };
-};
-
-export default connect(mapStateToProps)(FiltersBar);
+export default FiltersBar;
