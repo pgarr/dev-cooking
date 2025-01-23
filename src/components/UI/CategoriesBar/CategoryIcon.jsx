@@ -6,6 +6,7 @@ import {
   faHotdog,
   faSeedling,
   faUtensils,
+  faBottleDroplet,
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -22,6 +23,7 @@ const iconMap = {
   drink: faGlassMartini,
   sweet: faCookie,
   spicy: faPepperHot,
+  sauce: faBottleDroplet,
 };
 
 const CategoryIcon = ({ categoryName }) => {

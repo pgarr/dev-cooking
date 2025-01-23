@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { withRouter } from "react-router-dom";
+import { useContext } from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import BrandIcon from "./BrandIcon";
@@ -18,14 +18,15 @@ const StyledNavbar = styled(Navbar)`
   max-width: 1200px;
 `;
 
-const Toolbar = ({ history }) => {
+const Toolbar = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const { api } = useContext(FirebaseContext);
 
   const handleSelect = (eventKey) => {
     switch (eventKey) {
       case "recipes":
-        history.push({ pathname: "/recipes" });
+        navigate("/recipes");
         break;
       case "login":
         api.auth.signInWithGoogle();
@@ -54,4 +55,4 @@ const Toolbar = ({ history }) => {
   );
 };
 
-export default withRouter(Toolbar);
+export default Toolbar;

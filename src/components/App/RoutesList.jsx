@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 const RecipesList = lazy(() => import("../Recipes/RecipesList/RecipesList"));
@@ -11,12 +11,11 @@ const RecipeDetails = lazy(() =>
 const RoutesList = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <Switch>
-        <Route path="/recipes" exact component={RecipesList} />
-        <Route path="/recipes/:id" component={RecipeDetails} />
-        <Route path="/" exact component={Home} />
-        <Redirect to="/" />
-      </Switch>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="recipes" exact element={<RecipesList />} />
+        <Route path="recipes/:id" element={<RecipeDetails />} />
+      </Routes>
     </Suspense>
   );
 };

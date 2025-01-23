@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 import { initializeApp, getApps } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
 import {
@@ -14,8 +14,7 @@ import { setData, startLoading } from "../store/slices/recipesSlice";
 import { prepareData } from "./helpers";
 import { setUsername, clearUsername } from "../store/slices/authSlice";
 
-const FirebaseContext = createContext();
-export { FirebaseContext };
+export const FirebaseContext = createContext();
 
 let firebase = {
   app: null,
