@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { toLower } from "lodash";
 
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
@@ -14,7 +15,8 @@ const isCategoriesMatched = (categoriesFiltered, recipeCategories) => {
   );
 };
 
-const RecipesList = ({ history }) => {
+const RecipesList = () => {
+  const navigate = useNavigate();
   const recipes = useSelector((state) => state.recipes.recipes);
   const loading = useSelector((state) => state.recipes.loading);
   const nameFilter = useSelector((state) => state.filters.name);
@@ -31,7 +33,7 @@ const RecipesList = ({ history }) => {
   }, [recipes, nameFilter, categoriesFilter]);
 
   const recipeSelectedHandler = (id) => {
-    history.push({ pathname: "/recipes/" + id });
+    navigate("/recipes/" + id);
   };
 
   return (

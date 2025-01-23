@@ -1,5 +1,11 @@
-import { Redirect } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
-const Home = () => <Redirect to="/recipes" />;
+const Home = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/recipes"), [];
+  });
+};
 
 export default Home;

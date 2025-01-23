@@ -5,7 +5,8 @@
     "vegetarian": "wegetariańskie",
     "drink": "drink",
     "sweet": "słodkie",
-    "spicy": "ostre"
+    "spicy": "ostre",
+    "sauce": "sos"
   },
   "ingredients_head": "Składniki",
   "ingredients": {

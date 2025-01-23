@@ -5,7 +5,8 @@
     "vegetarian": "vegetarian",
     "drink": "drink",
     "sweet": "sweet",
-    "spicy": "spicy"
+    "spicy": "spicy",
+    "sauce": "sauce"
   },
   "ingredients_head": "ingredients",
   "ingredients": {
