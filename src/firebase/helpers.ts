@@ -1,11 +1,12 @@
-import { capitalize, noop, toLower } from "lodash";
+import { capitalize, toLower } from "lodash";
+import { Ingredient, Recipe } from "../types";
 
-export const prepareData = (recipes) => {
-  const categories = [];
-  const ingredients = [];
+export const prepareData = (recipes: Recipe[]) => {
+  const categories: string[] = [];
+  const ingredients: Ingredient[] = [];
   recipes.forEach((recipe) => {
-    recipe.ingredients ? ingredients.push(recipe.ingredients) : noop();
-    recipe.categories ? categories.push(recipe.categories) : noop();
+    ingredients.push(...recipe.ingredients);
+    categories.push(...recipe.categories);
   });
   return {
     categories: [
@@ -13,7 +14,7 @@ export const prepareData = (recipes) => {
     ].sort(),
     ingredients: [
       ...new Set(
-        ingredients.flat().map((ingredient) => capitalize(ingredient.title))
+        ingredients.flat().map((ingredient) => capitalize(ingredient.title)),
       ),
     ].sort(),
     recipes,

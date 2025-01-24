@@ -1,6 +1,11 @@
 import CategoryIcon from "./CategoryIcon";
 
-const CategoriesBar = ({ categories, className }) => {
+interface CategoriesBarProps {
+  categories: string[];
+  className?: string;
+}
+
+const CategoriesBar = ({ categories, className }: CategoriesBarProps) => {
   const localCategories = [...categories];
   localCategories.sort();
 

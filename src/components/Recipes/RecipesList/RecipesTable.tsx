@@ -17,7 +17,7 @@ const RecipesTable = ({ recipes, onSelectRecipe }) => {
               index={index + 1}
               {...recipe}
               key={recipe.id}
-              clicked={() => onSelectRecipe(recipe.id)}
+              onClick={() => onSelectRecipe(recipe.id)}
             />
           );
         })}

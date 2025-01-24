@@ -10,7 +10,11 @@ const StyledText = styled.p`
   text-justify: inter-word;
 `;
 
-const PreparationBox = ({ preparation }) => {
+interface PreparationBoxProps {
+  preparation: string;
+}
+
+const PreparationBox = ({ preparation }: PreparationBoxProps) => {
   const { t } = useTranslation();
 
   return (

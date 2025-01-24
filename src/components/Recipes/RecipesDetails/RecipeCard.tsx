@@ -5,6 +5,7 @@ import styled from "styled-components";
 import IngredientList from "./IngredientList";
 import PreparationBox from "./PreparationBox";
 import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
+import { Recipe } from "../../../types";
 
 const Data = styled.div`
   display: flex;
@@ -24,14 +25,18 @@ const Categories = styled(CategoriesBar)`
   margin-right: 20px;
 `;
 
-const RecipeCard = ({ recipe }) => {
+interface RecipeCardProps {
+  recipe: Recipe;
+}
+
+const RecipeCard = ({ recipe }: RecipeCardProps) => {
   return (
     <>
       <h2>{recipe.title}</h2>
       <Categories categories={recipe.categories}></Categories>
       {recipe.time ? (
         <span>
-          <FontAwesomeIcon icon={faClock} /> {recipe.time}'
+          <FontAwesomeIcon icon={faClock} /> {recipe.time}&apos;
         </span>
       ) : null}
       <Data>

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Button, Navbar, OverlayTrigger, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
-import { FirebaseContext } from "../../firebase/firebaseProvider";
+import { FirebaseContext } from "../../firebase/firebase";
+import { useAppSelector } from "../../store/store";
 
 const LogoutIcon = styled(FontAwesomeIcon)`
   color: red;
@@ -14,18 +14,16 @@ const LogoutIcon = styled(FontAwesomeIcon)`
 `;
 
 const UserBadge = () => {
-  const username = useSelector((state) => state.auth.username);
+  const username = useAppSelector((state) => state.auth.username);
   const { t } = useTranslation();
-  const { api } = useContext(FirebaseContext);
+  const { auth } = useContext(FirebaseContext);
 
   const login = () => {
-    if (!api) return;
-    api.auth.signInWithGoogle();
+    void auth.signInWithGoogle();
   };
 
   const logout = () => {
-    if (!api) return;
-    api.auth.logout();
+    void auth.logout();
   };
 
   return (

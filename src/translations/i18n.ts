@@ -9,7 +9,7 @@ const resources = {
   pl: { translation: pl },
 };
 
-i18n.use(initReactI18next).init({
+void i18n.use(initReactI18next).init({
   resources,
   lng: "pl",
   interpolation: {

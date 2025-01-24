@@ -4,8 +4,10 @@ import { useNavigate } from "react-router";
 const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate("/recipes"), [];
+    void (navigate("/recipes"), []);
   });
+
+  return <div></div>;
 };
 
 export default Home;

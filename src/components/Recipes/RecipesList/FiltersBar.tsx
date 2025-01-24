@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import Select from "react-select";
+import Select, { MultiValue, StylesConfig } from "react-select";
 import {
   filterName,
   filterCategories,
 } from "../../../store/slices/filtersSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 const FiltersButton = styled.button`
   background-color: #3d94f6;
@@ -43,7 +43,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.input`np
   border-color: hsl(0, 0%, 80%);
   border-radius: 4px;
   border-style: solid;
@@ -62,8 +62,8 @@ const StyledInput = styled.input`
   }
 `;
 
-const selectStyles = {
-  container: (provided, state) => {
+const selectStyles: StylesConfig = {
+  container: (provided) => {
     const flexGrow = 1;
     const height = "49px";
 
@@ -72,21 +72,25 @@ const selectStyles = {
 };
 
 const FiltersBar = () => {
-  const dispatch = useDispatch();
-  const nameFilter = useSelector((state) => state.filters.name);
-  const categoriesList = useSelector((state) => state.recipes.categories);
-  const categoriesSelected = useSelector((state) => state.filters.categories);
+  const dispatch = useAppDispatch();
+  const nameFilter = useAppSelector((state) => state.filters.name);
+  const categoriesList = useAppSelector((state) => state.recipes.categories);
+  const categoriesSelected = useAppSelector(
+    (state) => state.filters.categories,
+  );
 
   const { t } = useTranslation();
 
   const [categoriesOptions, setCategoriesOptions] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
 
-  const onFilterNameChange = (event) => {
+  const onFilterNameChange: React.ChangeEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
     dispatch(filterName(event.target.value));
   };
 
-  const onFilterCategoriesChange = (selectedOptions) => {
+  const onFilterCategoriesChange = (selectedOptions: MultiValue<unknown>) => {
     dispatch(filterCategories(selectedOptions));
   };
 
@@ -101,7 +105,9 @@ const FiltersBar = () => {
   return (
     <>
       <FiltersButton
-        onClick={() => setShowFilters((prevShowFilters) => !prevShowFilters)}
+        onClick={() => {
+          setShowFilters((prevShowFilters) => !prevShowFilters);
+        }}
       >
         {t("show_filters")}
       </FiltersButton>

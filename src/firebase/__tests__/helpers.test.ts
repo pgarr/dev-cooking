@@ -1,5 +1,6 @@
 import { expect, test } from "vitest";
 import { prepareData } from "../helpers";
+import { Recipe } from "../../types";
 
 test('"helpers.prepareData" returns unique ingredient names', () => {
   const recipes = [
@@ -32,15 +33,9 @@ test('"helpers.prepareData" returns unique ingredient names', () => {
       title: "test3",
     },
   ];
-  expect(prepareData(recipes).ingredients).toStrictEqual([
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-  ]);
+  expect(prepareData(recipes as unknown as Recipe[]).ingredients).toStrictEqual(
+    ["A", "B", "C", "D", "E", "F", "G"],
+  );
 });
 
 test('"helpers.prepareData" returns unique categories names', () => {
@@ -58,7 +53,11 @@ test('"helpers.prepareData" returns unique categories names', () => {
       title: "test3",
     },
   ];
-  expect(prepareData(recipes).categories).toStrictEqual(["a", "b", "d"]);
+  expect(prepareData(recipes as Recipe[]).categories).toStrictEqual([
+    "a",
+    "b",
+    "d",
+  ]);
 });
 
 test('"helpers.prepareData" returns unmodified recipes', () => {
@@ -94,5 +93,7 @@ test('"helpers.prepareData" returns unmodified recipes', () => {
       ],
     },
   ];
-  expect(prepareData(recipes).recipes).toStrictEqual(recipes);
+  expect(prepareData(recipes as unknown as Recipe[]).recipes).toStrictEqual(
+    recipes,
+  );
 });

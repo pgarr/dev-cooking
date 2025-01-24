@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import BrandIcon from "./BrandIcon";
-import { FirebaseContext } from "../../firebase/firebaseProvider";
+import { FirebaseContext } from "../../firebase/firebase";
 import UserBadge from "./UserBadge";
 
 const NavContainer = styled.div`
@@ -21,15 +21,15 @@ const StyledNavbar = styled(Navbar)`
 const Toolbar = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { api } = useContext(FirebaseContext);
+  const { auth } = useContext(FirebaseContext);
 
-  const handleSelect = (eventKey) => {
+  const handleSelect = (eventKey: string | null) => {
     switch (eventKey) {
       case "recipes":
-        navigate("/recipes");
+        void navigate("/recipes");
         break;
       case "login":
-        api.auth.signInWithGoogle();
+        void auth.signInWithGoogle();
         break;
       default:
         break;

@@ -2,22 +2,14 @@ import { useContext, useEffect } from "react";
 
 import Layout from "./Layout";
 import RoutesList from "./RoutesList";
-import { FirebaseContext } from "../../firebase/firebaseProvider";
+import { FirebaseContext } from "../../firebase/firebase";
 
 const App = () => {
   // Firebase setup
-  const { api, init } = useContext(FirebaseContext);
+  const firebaseApi = useContext(FirebaseContext);
   useEffect(() => {
-    if (!init) return;
-    console.log("init");
-    init();
-  }, [init]);
-
-  console.log(api);
-  useEffect(() => {
-    if (!api) return;
-    api.setRecipeListener();
-  }, [api]);
+    firebaseApi.api.setRecipeListener();
+  }, [firebaseApi]);
 
   return (
     <Layout>

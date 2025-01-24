@@ -1,13 +1,20 @@
 import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
 
-const RecipeRow = ({ title, time, categories, clicked }) => {
+interface RecipeRowProps {
+  title: string;
+  time: number;
+  categories: string[];
+  onClick: () => void;
+}
+
+const RecipeRow = ({ title, time, categories, onClick }: RecipeRowProps) => {
   return (
-    <tr onClick={clicked}>
+    <tr onClick={onClick}>
       <td>{title}</td>
       <td>
         <CategoriesBar categories={categories}></CategoriesBar>
       </td>
-      <td>{time ? time + "'" : null}</td>
+      <td>{time ? `${time.toString()}'` : null}</td>
     </tr>
   );
 };

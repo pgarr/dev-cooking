@@ -26,7 +26,11 @@ const iconMap = {
   sauce: faBottleDroplet,
 };
 
-const CategoryIcon = ({ categoryName }) => {
+interface CategoryIconProps {
+  categoryName: string;
+}
+
+const CategoryIcon = ({ categoryName }: CategoryIconProps) => {
   const { t } = useTranslation("translation", { keyPrefix: "categories" });
 
   return (

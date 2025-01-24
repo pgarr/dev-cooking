@@ -3,12 +3,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import FirebaseProvider from "./firebase/firebaseProvider";
 
 import "./index.css";
 import "./translations/i18n";
 import App from "./components/App/App";
 import store from "./store/store";
+import FirebaseProvider from "./firebase/firebase";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {

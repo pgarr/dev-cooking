@@ -12,8 +12,8 @@ const RoutesList = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="recipes" exact element={<RecipesList />} />
+        <Route path="/" element={<Home />} />
+        <Route path="recipes" element={<RecipesList />} />
         <Route path="recipes/:id" element={<RecipeDetails />} />
       </Routes>
     </Suspense>

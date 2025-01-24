@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { toLower } from "lodash";
+import { Ingredient } from "../../../types";
 
 const Container = styled.div`
   margin: 0 20px;
@@ -43,7 +43,11 @@ const AmountCell = styled(Cell)`
     flex: 1 1 45%;
 `;
 
-const IngredientList = ({ className, ingredients }) => {
+interface IngredientListProps {
+  ingredients: Ingredient[];
+}
+
+const IngredientList = ({ ingredients }: IngredientListProps) => {
   const { t } = useTranslation();
   return (
     <Container>
@@ -54,7 +58,7 @@ const IngredientList = ({ className, ingredients }) => {
             <React.Fragment key={index}>
               <TitleCell>{ingredient.title}</TitleCell>
               <AmountCell>{`${ingredient.amount || ""} ${toLower(
-                ingredient.unit
+                ingredient.unit,
               )}`}</AmountCell>
             </React.Fragment>
           );
@@ -62,10 +66,6 @@ const IngredientList = ({ className, ingredients }) => {
       </Table>
     </Container>
   );
-};
-
-IngredientList.propTypes = {
-  ingredients: PropTypes.array.isRequired,
 };
 
 export default IngredientList;

@@ -1,12 +1,12 @@
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
 
 import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
 import RecipeCard from "./RecipeCard";
+import { useAppSelector } from "../../../store/store";
 
 const RecipeDetails = () => {
-  const recipes = useSelector((state) => state.recipes.recipes);
-  const loading = useSelector((state) => state.recipes.loading);
+  const recipes = useAppSelector((state) => state.recipes.recipes);
+  const loading = useAppSelector((state) => state.recipes.loading);
   const params = useParams();
   const selectedRecipe = recipes.find((recipe) => recipe.id == params.id);
 
