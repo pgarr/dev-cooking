@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Button, Navbar, OverlayTrigger, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
-import { FirebaseContext } from "../../firebase/firebase";
+import { FirebaseContext } from "../../firebase/firebaseProvider";
 
 const LogoutIcon = styled(FontAwesomeIcon)`
   color: red;
@@ -19,10 +19,12 @@ const UserBadge = () => {
   const { api } = useContext(FirebaseContext);
 
   const login = () => {
+    if (!api) return;
     api.auth.signInWithGoogle();
   };
 
   const logout = () => {
+    if (!api) return;
     api.auth.logout();
   };
 
@@ -32,7 +34,7 @@ const UserBadge = () => {
         <div>
           {username}
           <OverlayTrigger
-            key={logout}
+            key={"logout"}
             placement={"bottom"}
             overlay={<Tooltip id={`tooltip-logout`}>{t("logout")}</Tooltip>}
           >

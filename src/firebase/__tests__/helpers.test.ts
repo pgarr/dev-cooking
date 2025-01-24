@@ -1,5 +1,5 @@
-import { expect, test } from 'vitest'
-import { prepareData } from "./helpers";
+import { expect, test } from "vitest";
+import { prepareData } from "../helpers";
 
 test('"helpers.prepareData" returns unique ingredient names', () => {
   const recipes = [

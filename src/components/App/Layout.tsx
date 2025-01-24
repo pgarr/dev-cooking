@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import { Flip, ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,7 +11,7 @@ const Content = styled.div`
   padding: 0 10px 0;
 `;
 
-const Layout = ({ children }) => (
+const Layout: React.FC<PropsWithChildren> = ({ children }) => (
   <>
     <Toolbar />
     <Content>

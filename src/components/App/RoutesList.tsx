@@ -4,8 +4,8 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 
 const RecipesList = lazy(() => import("../Recipes/RecipesList/RecipesList"));
 const Home = lazy(() => import("../Home/Home"));
-const RecipeDetails = lazy(() =>
-  import("../Recipes/RecipesDetails/RecipeDetails")
+const RecipeDetails = lazy(
+  () => import("../Recipes/RecipesDetails/RecipeDetails"),
 );
 
 const RoutesList = () => {

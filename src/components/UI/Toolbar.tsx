@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import BrandIcon from "./BrandIcon";
-import { FirebaseContext } from "../../firebase/firebase";
+import { FirebaseContext } from "../../firebase/firebaseProvider";
 import UserBadge from "./UserBadge";
 
 const NavContainer = styled.div`
