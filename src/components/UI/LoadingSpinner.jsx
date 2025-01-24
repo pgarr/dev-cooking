@@ -1,17 +1,14 @@
-import styled from "styled-components";
-import { SpinnerCircular } from "spinners-react";
+import Spinner from "react-bootstrap/Spinner";
 
-const LoadingSpinner = ({ className }) => {
-  return (
-    <SpinnerCircular
-      className={className}
-      color={"#023fa1"}
-      secondaryColor={"#c9c6c5"}
-    />
-  );
+import styled from "styled-components";
+
+const LoadingSpinner = () => {
+  return <Spinner animation="border" variant="primary" />;
 };
 
-export default styled(LoadingSpinner)`
+const StyledLoadingSpinner = styled(LoadingSpinner)`
   display: block;
   margin: 0 auto;
 `;
+
+export default StyledLoadingSpinner;
