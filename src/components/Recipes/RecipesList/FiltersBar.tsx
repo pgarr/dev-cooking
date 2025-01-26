@@ -7,6 +7,7 @@ import {
   filterCategories,
 } from "../../../store/slices/filtersSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { CategoryOption } from "../../../types";
 
 const FiltersButton = styled.button`
   background-color: #3d94f6;
@@ -81,7 +82,9 @@ const FiltersBar = () => {
 
   const { t } = useTranslation();
 
-  const [categoriesOptions, setCategoriesOptions] = useState([]);
+  const [categoriesOptions, setCategoriesOptions] = useState<CategoryOption[]>(
+    [],
+  );
   const [showFilters, setShowFilters] = useState(false);
 
   const onFilterNameChange: React.ChangeEventHandler<HTMLInputElement> = (
@@ -90,7 +93,7 @@ const FiltersBar = () => {
     dispatch(filterName(event.target.value));
   };
 
-  const onFilterCategoriesChange = (selectedOptions: MultiValue<unknown>) => {
+  const onFilterCategoriesChange = (selectedOptions: CategoryOption[]) => {
     dispatch(filterCategories(selectedOptions));
   };
 
@@ -123,9 +126,14 @@ const FiltersBar = () => {
             styles={selectStyles}
             placeholder={t("categories_name") + "..."}
             closeMenuOnSelect={false}
-            isMulti
+            isMulti={true}
             options={categoriesOptions}
-            onChange={onFilterCategoriesChange}
+            onChange={
+              //TODO: react-select types are not working properly
+              onFilterCategoriesChange as (
+                selectedOptions: MultiValue<unknown>,
+              ) => void
+            }
             value={categoriesSelected}
           />
         </Container>

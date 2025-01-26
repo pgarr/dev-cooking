@@ -11,3 +11,8 @@ export interface Recipe {
   ingredients: Ingredient[];
   preparation: string;
 }
+
+export interface CategoryOption {
+  value: string;
+  label: string;
+}

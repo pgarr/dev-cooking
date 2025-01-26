@@ -8,11 +8,12 @@ const RecipeDetails = () => {
   const recipes = useAppSelector((state) => state.recipes.recipes);
   const loading = useAppSelector((state) => state.recipes.loading);
   const params = useParams();
-  const selectedRecipe = recipes.find((recipe) => recipe.id == params.id);
+  const id = Number(params.id) || -1;
+  const selectedRecipe = recipes.find((recipe) => recipe.id === id);
 
   return (
     <LoadingContainer isLoading={loading}>
-      <RecipeCard recipe={selectedRecipe} />
+      {selectedRecipe && <RecipeCard recipe={selectedRecipe} />}
     </LoadingContainer>
   );
 };
