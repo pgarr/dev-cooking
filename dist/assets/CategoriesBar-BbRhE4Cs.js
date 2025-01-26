@@ -1,3 +1,0 @@
-import{j as a,S as i,H as r,g as l,O as c,T as p,F as d,p as x,q as g,s as f,t as j,v as u,w as m,x as y}from"./index-BXnzDVwr.js";const k=({isLoading:s,children:n})=>s?a.jsx(i,{}):n,C=r.span`
-  margin: 0 5px;
-`,v={main:x,snack:g,vegetarian:f,drink:j,sweet:u,spicy:m,sauce:y},S=({categoryName:s})=>{const{t:n}=l("translation",{keyPrefix:"categories"});return a.jsx(c,{placement:"top",overlay:a.jsx(p,{id:`tooltip-${s}`,children:n(s)}),children:a.jsx(C,{children:a.jsx(d,{icon:v[s]})})},s)},H=({categories:s,className:n})=>{const t=[...s];return t.sort(),a.jsx("div",{className:n,children:t.map((e,o)=>a.jsx(S,{categoryName:e},o))})};export{H as C,k as L};
