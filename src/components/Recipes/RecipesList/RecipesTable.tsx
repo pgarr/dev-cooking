@@ -2,22 +2,29 @@ import { Table } from "react-bootstrap";
 import styled from "styled-components";
 
 import RecipeRow from "./RecipeRow";
+import { Recipe } from "../../../types";
 
 const StyledTable = styled(Table)`
   border-top: solid 1px;
 `;
 
-const RecipesTable = ({ recipes, onSelectRecipe }) => {
+interface RecipesTableProps {
+  recipes: Recipe[];
+  onSelectRecipe: (id: number) => void;
+}
+
+const RecipesTable = ({ recipes, onSelectRecipe }: RecipesTableProps) => {
   return (
     <StyledTable hover>
       <tbody>
-        {recipes.map((recipe, index) => {
+        {recipes.map((recipe) => {
           return (
             <RecipeRow
-              index={index + 1}
               {...recipe}
               key={recipe.id}
-              onClick={() => onSelectRecipe(recipe.id)}
+              onClick={() => {
+                onSelectRecipe(recipe.id);
+              }}
             />
           );
         })}

@@ -6,11 +6,14 @@ import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
 import FiltersBar from "./FiltersBar";
 import RecipesTable from "./RecipesTable";
 import { useAppSelector } from "../../../store/store";
+import { Recipe } from "../../../types";
 
 const isCategoriesMatched = (
-  categoriesFiltered: any[],
-  recipeCategories: any[],
+  categoriesFiltered: { value: string; label: string }[],
+  recipeCategories: string[],
 ) => {
+  console.log(categoriesFiltered);
+  console.log(recipeCategories);
   if (categoriesFiltered.length === 0) return true;
   const categoriesValues = categoriesFiltered.map((category) => category.value);
   return recipeCategories.some(
@@ -25,7 +28,7 @@ const RecipesList = () => {
   const nameFilter = useAppSelector((state) => state.filters.name);
   const categoriesFilter = useAppSelector((state) => state.filters.categories);
 
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
   useEffect(() => {
     const recs = recipes.filter(
       (recipe) =>

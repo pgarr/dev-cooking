@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FiltersState {
   name: string;
-  categories: string[];
+  categories: { value: string; label: string }[];
 }
 
 const initialState: FiltersState = {
@@ -17,7 +17,10 @@ export const filtersSlice = createSlice({
     filterName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
-    filterCategories: (state, action: PayloadAction<string[]>) => {
+    filterCategories: (
+      state,
+      action: PayloadAction<{ value: string; label: string }[]>,
+    ) => {
       state.categories = action.payload;
     },
   },

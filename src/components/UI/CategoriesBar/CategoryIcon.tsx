@@ -7,6 +7,7 @@ import {
   faSeedling,
   faUtensils,
   faBottleDroplet,
+  IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -16,7 +17,7 @@ const Span = styled.span`
   margin: 0 5px;
 `;
 
-const iconMap = {
+const iconMap: Record<string, IconDefinition> = {
   main: faUtensils,
   snack: faHotdog,
   vegetarian: faSeedling,
