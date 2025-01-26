@@ -12,8 +12,6 @@ const isCategoriesMatched = (
   categoriesFiltered: { value: string; label: string }[],
   recipeCategories: string[],
 ) => {
-  console.log(categoriesFiltered);
-  console.log(recipeCategories);
   if (categoriesFiltered.length === 0) return true;
   const categoriesValues = categoriesFiltered.map((category) => category.value);
   return recipeCategories.some(
@@ -38,8 +36,8 @@ const RecipesList = () => {
     setFilteredRecipes(recs);
   }, [recipes, nameFilter, categoriesFilter]);
 
-  const recipeSelectedHandler = (id: string) => {
-    void navigate("/recipes/" + id);
+  const recipeSelectedHandler = (id: number) => {
+    void navigate("/recipes/" + id.toString());
   };
 
   return (
