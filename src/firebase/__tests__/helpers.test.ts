@@ -5,6 +5,7 @@ import { Recipe } from "../../types";
 test('"helpers.prepareData" returns unique ingredient names', () => {
   const recipes = [
     {
+      categories: [],
       ingredients: [
         { title: "A", amount: 1 },
         { title: "B", amount: 1 },
@@ -14,6 +15,7 @@ test('"helpers.prepareData" returns unique ingredient names', () => {
       title: "test1",
     },
     {
+      categories: [],
       ingredients: [
         { title: "A", amount: 1 },
         { title: "D", amount: 1 },
@@ -23,6 +25,7 @@ test('"helpers.prepareData" returns unique ingredient names', () => {
       title: "test2",
     },
     {
+      categories: [],
       ingredients: [
         { title: "a", amount: 1 },
         { title: "C", amount: 1 },
@@ -40,20 +43,11 @@ test('"helpers.prepareData" returns unique ingredient names', () => {
 
 test('"helpers.prepareData" returns unique categories names', () => {
   const recipes = [
-    {
-      categories: ["A"],
-      title: "test1",
-    },
-    {
-      categories: ["a", "B", "D"],
-      title: "test2",
-    },
-    {
-      categories: ["A", "B", "d"],
-      title: "test3",
-    },
+    { ingredients: [], categories: ["A"], title: "test1" },
+    { ingredients: [], categories: ["a", "B", "D"], title: "test2" },
+    { ingredients: [], categories: ["A", "B", "d"], title: "test3" },
   ];
-  expect(prepareData(recipes as Recipe[]).categories).toStrictEqual([
+  expect(prepareData(recipes as unknown as Recipe[]).categories).toStrictEqual([
     "a",
     "b",
     "d",
