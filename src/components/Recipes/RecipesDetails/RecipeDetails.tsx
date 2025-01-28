@@ -8,7 +8,7 @@ const RecipeDetails = () => {
   const recipes = useAppSelector((state) => state.recipes.recipes);
   const loading = useAppSelector((state) => state.recipes.loading);
   const params = useParams();
-  const id = Number(params.id) || -1;
+  const id = Number(params.id);
   const selectedRecipe = recipes.find((recipe) => recipe.id === id);
 
   return (
