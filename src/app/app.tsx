@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
-import Layout from "./Layout";
-import RoutesList from "./RoutesList";
-import { FirebaseContext } from "../../firebase/firebase";
+import Layout from "../components/hoc/layout";
+import RoutesList from "./routes";
+import { FirebaseContext } from "../firebase/firebaseContext";
 
 const App = () => {
   // Firebase setup

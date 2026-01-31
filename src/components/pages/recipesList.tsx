@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { toLower } from "lodash";
 
-import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
-import FiltersBar from "./FiltersBar";
-import RecipesTable from "./RecipesTable";
-import { useAppSelector } from "../../../store/store";
-import { Recipe } from "../../../types";
+import LoadingContainer from "../hoc/loadingContainer";
+import { useAppSelector } from "../../store/store";
+import { Recipe } from "../../types";
+import FiltersBar from "@/components/fragments/filtersBar";
+import RecipesTable from "@/components/fragments/recipesTable";
 
 const isCategoriesMatched = (
   categoriesFiltered: { value: string; label: string }[],

@@ -1,16 +1,14 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import LoadingSpinner from "../UI/LoadingSpinner";
+import { Spinner } from "../components/ui/spinner";
 
-const RecipesList = lazy(() => import("../Recipes/RecipesList/RecipesList"));
-const Home = lazy(() => import("../Home/Home"));
-const RecipeDetails = lazy(
-  () => import("../Recipes/RecipesDetails/RecipeDetails"),
-);
+const RecipesList = lazy(() => import("../components/pages/recipesList"));
+const Home = lazy(() => import("../components/pages/home"));
+const RecipeDetails = lazy(() => import("../components/pages/recipeDetails"));
 
 const RoutesList = () => {
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="recipes" element={<RecipesList />} />

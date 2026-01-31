@@ -1,4 +1,4 @@
-import CategoryIcon from "./CategoryIcon";
+import CategoryIcon from "./categoryIcon";
 
 interface CategoriesBarProps {
   categories: string[];

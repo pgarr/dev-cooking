@@ -1,12 +1,6 @@
-import { Table } from "react-bootstrap";
-import styled from "styled-components";
-
-import RecipeRow from "./RecipeRow";
-import { Recipe } from "../../../types";
-
-const StyledTable = styled(Table)`
-  border-top: solid 1px;
-`;
+import { Recipe } from "@/types";
+import RecipeRow from "./recipeRow";
+import { Table, TableBody } from "@/components/ui/table";
 
 interface RecipesTableProps {
   recipes: Recipe[];
@@ -15,8 +9,8 @@ interface RecipesTableProps {
 
 const RecipesTable = ({ recipes, onSelectRecipe }: RecipesTableProps) => {
   return (
-    <StyledTable hover>
-      <tbody>
+    <Table>
+      <TableBody>
         {recipes.map((recipe) => {
           return (
             <RecipeRow
@@ -28,8 +22,8 @@ const RecipesTable = ({ recipes, onSelectRecipe }: RecipesTableProps) => {
             />
           );
         })}
-      </tbody>
-    </StyledTable>
+      </TableBody>
+    </Table>
   );
 };
 

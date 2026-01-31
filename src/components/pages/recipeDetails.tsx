@@ -1,8 +1,8 @@
 import { useParams } from "react-router";
 
-import LoadingContainer from "../../HOC/LoadingContainer/LoadingContainer";
-import RecipeCard from "./RecipeCard";
-import { useAppSelector } from "../../../store/store";
+import LoadingContainer from "../hoc/loadingContainer";
+import RecipeCard from "../fragments/recipeCard";
+import { useAppSelector } from "../../store/store";
 
 const RecipeDetails = () => {
   const recipes = useAppSelector((state) => state.recipes.recipes);

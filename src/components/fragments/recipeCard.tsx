@@ -1,29 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
 
-import IngredientList from "./IngredientList";
-import PreparationBox from "./PreparationBox";
-import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
-import { Recipe } from "../../../types";
-
-const Data = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: center;
-  margin-top: 40px;
-
-  @media only all and (min-width: 1000px) {
-    align-items: flex-start;
-    flex-direction: row;
-  }
-`;
-
-const Categories = styled(CategoriesBar)`
-  display: inline;
-  margin-right: 20px;
-`;
+import IngredientList from "./ingredientList";
+import PreparationBox from "./preparationBox";
+import CategoriesBar from "./categoriesBar";
+import { Recipe } from "@/types";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -33,20 +14,20 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
   return (
     <>
       <h2>{recipe.title}</h2>
-      <Categories categories={recipe.categories}></Categories>
+      <CategoriesBar categories={recipe.categories} className="inline mr-5" />
       {recipe.time ? (
         <span>
           <FontAwesomeIcon icon={faClock} /> {recipe.time}&apos;
         </span>
       ) : null}
-      <Data>
+      <div className="flex flex-col md:flex-row gap-12 mt-10 md:items-start items-center">
         {recipe.ingredients.length > 0 ? (
           <IngredientList ingredients={recipe.ingredients} />
         ) : null}
         {recipe.preparation && (
           <PreparationBox preparation={recipe.preparation} />
         )}
-      </Data>
+      </div>
     </>
   );
 };
