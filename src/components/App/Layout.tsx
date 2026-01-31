@@ -1,34 +1,10 @@
 import { PropsWithChildren } from "react";
-import { Flip, ToastContainer } from "react-toastify";
-import styled from "styled-components";
-import "react-toastify/dist/ReactToastify.css";
-
 import Toolbar from "../UI/Toolbar";
-
-const Content = styled.div`
-  margin: 40px auto 0px;
-  max-width: 1200px;
-  padding: 0 10px 0;
-`;
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => (
   <>
     <Toolbar />
-    <Content>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        transition={Flip}
-      />
-      {children}
-    </Content>
+    <div className="mt-10 px-2.5 md:px-20 lg:px-40">{children}</div>
   </>
 );
 

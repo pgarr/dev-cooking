@@ -1,3 +1,4 @@
+import { TableCell, TableRow } from "@/components/ui/table";
 import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
 
 interface RecipeRowProps {
@@ -9,13 +10,13 @@ interface RecipeRowProps {
 
 const RecipeRow = ({ title, time, categories, onClick }: RecipeRowProps) => {
   return (
-    <tr onClick={onClick}>
-      <td>{title}</td>
-      <td>
+    <TableRow onClick={onClick} className="cursor-pointer">
+      <TableCell>{title}</TableCell>
+      <TableCell>
         <CategoriesBar categories={categories}></CategoriesBar>
-      </td>
-      <td>{time ? `${time.toString()}'` : null}</td>
-    </tr>
+      </TableCell>
+      <TableCell>{time ? `${time.toString()}'` : null}</TableCell>
+    </TableRow>
   );
 };
 

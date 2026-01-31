@@ -1,22 +1,10 @@
 import { useContext } from "react";
-import { Nav, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
 import BrandIcon from "./BrandIcon";
 import { FirebaseContext } from "../../firebase/firebase";
 import UserBadge from "./UserBadge";
-
-const NavContainer = styled.div`
-  background: #023fa1;
-  width: 100%;
-`;
-
-const StyledNavbar = styled(Navbar)`
-  height: 71px;
-  margin: auto;
-  max-width: 1200px;
-`;
+import { Button } from "../ui/button";
 
 const Toolbar = () => {
   const navigate = useNavigate();
@@ -37,21 +25,21 @@ const Toolbar = () => {
   };
 
   return (
-    <NavContainer>
-      <StyledNavbar variant="dark">
-        <Navbar.Brand>
-          <BrandIcon />
-        </Navbar.Brand>
-        <Nav className="mr-auto" onSelect={handleSelect}>
-          <Nav.Link eventKey="recipes">{t("recipes")}</Nav.Link>
-        </Nav>
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            <UserBadge />
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </StyledNavbar>
-    </NavContainer>
+    <div className="w-full flex flex-row py-2 px-15 justify-between h-8">
+      <div className="flex flex-row gap-10">
+        <BrandIcon />
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            handleSelect("recipes");
+          }}
+        >
+          {t("recipes")}
+        </Button>
+      </div>
+      <UserBadge />
+    </div>
   );
 };
 

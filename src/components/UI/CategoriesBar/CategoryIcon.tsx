@@ -9,13 +9,12 @@ import {
   faBottleDroplet,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-
-const Span = styled.span`
-  margin: 0 5px;
-`;
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const iconMap: Record<string, IconDefinition> = {
   main: faUtensils,
@@ -35,17 +34,14 @@ const CategoryIcon = ({ categoryName }: CategoryIconProps) => {
   const { t } = useTranslation("translation", { keyPrefix: "categories" });
 
   return (
-    <OverlayTrigger
-      key={categoryName}
-      placement={"top"}
-      overlay={
-        <Tooltip id={`tooltip-${categoryName}`}>{t(categoryName)}</Tooltip>
-      }
-    >
-      <Span>
+    <Tooltip key={categoryName}>
+      <TooltipTrigger>
         <FontAwesomeIcon icon={iconMap[categoryName]} />
-      </Span>
-    </OverlayTrigger>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{t(categoryName)}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 

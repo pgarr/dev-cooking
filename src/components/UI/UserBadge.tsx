@@ -2,16 +2,10 @@ import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
-import { Button, Navbar, OverlayTrigger, Tooltip } from "react-bootstrap";
-import styled from "styled-components";
 import { FirebaseContext } from "../../firebase/firebase";
 import { useAppSelector } from "../../store/store";
-
-const LogoutIcon = styled(FontAwesomeIcon)`
-  color: red;
-  cursor: pointer;
-  padding: 2px 0 0 5px;
-`;
+import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const UserBadge = () => {
   const username = useAppSelector((state) => state.auth.username);
@@ -27,26 +21,32 @@ const UserBadge = () => {
   };
 
   return (
-    <Navbar.Text>
+    <>
       {username ? (
-        <div>
-          {username}
-          <OverlayTrigger
-            key={"logout"}
-            placement={"bottom"}
-            overlay={<Tooltip id={`tooltip-logout`}>{t("logout")}</Tooltip>}
-          >
-            <span>
-              <LogoutIcon icon={faSignOutAlt} onClick={logout} />
-            </span>
-          </OverlayTrigger>
+        <div className="flex flex-row items-center gap-2 justify-baseline mt-3">
+          <span className="">{username}</span>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                size="xs"
+                variant="ghost"
+                className="p-0"
+                onClick={logout}
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} onClick={logout} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{t("logout")}</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       ) : (
-        <Button variant="outline-success" onClick={login}>
+        <Button variant="outline" onClick={login} size="icon-sm">
           {t("login")}
         </Button>
       )}
-    </Navbar.Text>
+    </>
   );
 };
 
