@@ -1,11 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { filtersReducer, recipesReducer, authReducer } from "./slices";
+import { filtersReducer, recipesReducer } from "./slices";
 import { useDispatch, useSelector } from "react-redux";
 
 const rootReducer = combineReducers({
   recipes: recipesReducer,
   filters: filtersReducer,
-  auth: authReducer,
 });
 const store = configureStore({
   reducer: rootReducer,

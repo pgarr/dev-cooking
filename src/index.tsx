@@ -8,17 +8,23 @@ import "./translations/i18n";
 import App from "./app/app";
 import store from "./store/store";
 import FirebaseProvider from "./firebase/firebaseContext";
+import { UserProvider } from "./components/context/userContext";
+import { RecipesProvider } from "./components/context/recipesContext";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
       <Provider store={store}>
-        <FirebaseProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </FirebaseProvider>
+        <UserProvider>
+          <RecipesProvider>
+            <FirebaseProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </FirebaseProvider>
+          </RecipesProvider>
+        </UserProvider>
       </Provider>
     </StrictMode>,
   );

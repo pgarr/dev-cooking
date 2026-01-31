@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { prepareData } from "../helpers";
+import { prepareData } from "../../lib/helpers";
 import { Recipe } from "../../types";
 
 test('"helpers.prepareData" returns unique ingredient names', () => {

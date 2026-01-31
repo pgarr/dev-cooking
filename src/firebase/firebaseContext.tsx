@@ -1,10 +1,13 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Database, getDatabase, onValue, ref } from "firebase/database";
-import { createContext, PropsWithChildren, useCallback } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+} from "react";
 import { setData, startLoading } from "../store/slices/recipesSlice";
-import { prepareData } from "./helpers";
 import firebaseConfig from "./firebaseConfig";
-import { useAppDispatch } from "../store/store";
 import { Recipe } from "../types";
 import {
   getAuth,
@@ -14,8 +17,10 @@ import {
   signOut,
   UserCredential,
 } from "firebase/auth";
-import { clearUsername, setUsername } from "../store/slices/authSlice";
 import { noop } from "lodash";
+import { UserContext } from "@/components/context/userContext";
+import { prepareData } from "@/lib/helpers";
+import { useAppDispatch } from "@/store/store";
 
 const noopAsync = () => {
   return Promise.resolve(undefined);
@@ -46,6 +51,7 @@ export const FirebaseContext = createContext<FirebaseApi>({
 });
 
 const FirebaseProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  const { setUsername, clearUsername } = useContext(UserContext);
   const dispatch = useAppDispatch();
 
   const setRecipeListener = useCallback(() => {
@@ -60,9 +66,9 @@ const FirebaseProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      dispatch(setUsername(user.displayName));
+      setUsername(user.displayName);
     } else {
-      dispatch(clearUsername());
+      clearUsername();
     }
   });
 
