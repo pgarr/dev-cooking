@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  filterName,
-  filterCategories,
-} from "../../../store/slices/filtersSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { CategoryOption } from "../../../types";
+import { Search } from "lucide-react";
+
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { CategoryOption } from "@/types";
+import { filterCategories, filterName } from "@/store/slices/filtersSlice";
 
 const FiltersBar = () => {
   const dispatch = useAppDispatch();

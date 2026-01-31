@@ -1,5 +1,5 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
+import CategoriesBar from "./categoriesBar";
 
 interface RecipeRowProps {
   title: string;
@@ -13,7 +13,7 @@ const RecipeRow = ({ title, time, categories, onClick }: RecipeRowProps) => {
     <TableRow onClick={onClick} className="cursor-pointer">
       <TableCell>{title}</TableCell>
       <TableCell>
-        <CategoriesBar categories={categories}></CategoriesBar>
+        <CategoriesBar categories={categories} />
       </TableCell>
       <TableCell>{time ? `${time.toString()}'` : null}</TableCell>
     </TableRow>

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import Toolbar from "../UI/Toolbar";
+import Toolbar from "../fragments/toolbar";
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => (
   <>

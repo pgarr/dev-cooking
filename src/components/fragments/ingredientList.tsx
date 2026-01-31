@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { toLower } from "lodash";
-import { Ingredient } from "../../../types";
+import { Ingredient } from "@/types";
 
 interface IngredientListProps {
   ingredients: Ingredient[];

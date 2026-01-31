@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
-import IngredientList from "./IngredientList";
-import PreparationBox from "./PreparationBox";
-import CategoriesBar from "../../UI/CategoriesBar/CategoriesBar";
-import { Recipe } from "../../../types";
+import IngredientList from "./ingredientList";
+import PreparationBox from "./preparationBox";
+import CategoriesBar from "./categoriesBar";
+import { Recipe } from "@/types";
 
 interface RecipeCardProps {
   recipe: Recipe;

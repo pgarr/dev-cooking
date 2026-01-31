@@ -1,5 +1,5 @@
-import RecipeRow from "./RecipeRow";
-import { Recipe } from "../../../types";
+import { Recipe } from "@/types";
+import RecipeRow from "./recipeRow";
 import { Table, TableBody } from "@/components/ui/table";
 
 interface RecipesTableProps {

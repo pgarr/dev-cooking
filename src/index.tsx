@@ -5,9 +5,9 @@ import { Provider } from "react-redux";
 
 import "./index.css";
 import "./translations/i18n";
-import App from "./components/App/App";
+import App from "./app/app";
 import store from "./store/store";
-import FirebaseProvider from "./firebase/firebase";
+import FirebaseProvider from "./firebase/firebaseContext";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {

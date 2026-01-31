@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
-import { FirebaseContext } from "../../firebase/firebase";
+import { FirebaseContext } from "../../firebase/firebaseContext";
 import { useAppSelector } from "../../store/store";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -42,7 +42,7 @@ const UserBadge = () => {
           </Tooltip>
         </div>
       ) : (
-        <Button variant="outline" onClick={login} size="icon-sm">
+        <Button variant="outline" onClick={login} size="sm">
           {t("login")}
         </Button>
       )}

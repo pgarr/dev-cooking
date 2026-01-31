@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import BrandIcon from "./BrandIcon";
-import { FirebaseContext } from "../../firebase/firebase";
-import UserBadge from "./UserBadge";
+import BrandIcon from "./brandIcon";
 import { Button } from "../ui/button";
+import UserBadge from "./userBadge";
+import { FirebaseContext } from "@/firebase/firebaseContext";
 
 const Toolbar = () => {
   const navigate = useNavigate();
