@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { FirebaseContext } from "../../firebase/firebaseContext";
-import { useAppSelector } from "../../store/store";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { UserContext } from "../context/userContext";
 
 const UserBadge = () => {
-  const username = useAppSelector((state) => state.auth.username);
+  const { username } = useContext(UserContext);
   const { t } = useTranslation();
   const { auth } = useContext(FirebaseContext);
 

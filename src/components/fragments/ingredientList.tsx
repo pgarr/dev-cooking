@@ -10,7 +10,7 @@ const IngredientList = ({ ingredients }: IngredientListProps) => {
   const { t } = useTranslation();
   return (
     <div className="mx-5">
-      <h3>{t("ingredients_head")}</h3>
+      <h3 className="font-bold text-2xl mb-3">{t("ingredients_head")}</h3>
       <div className="flex min-w-sm flex-col">
         {ingredients.map((ingredient, index) => {
           return (

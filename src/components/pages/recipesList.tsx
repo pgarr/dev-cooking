@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { toLower } from "lodash";
 
 import LoadingContainer from "../hoc/loadingContainer";
-import { useAppSelector } from "../../store/store";
 import { Recipe } from "../../types";
 import FiltersBar from "@/components/fragments/filtersBar";
 import RecipesTable from "@/components/fragments/recipesTable";
+import { RecipesContext } from "../context/recipesContext";
+import { FiltersContext } from "../context/filtersContext";
 
 const isCategoriesMatched = (
   categoriesFiltered: { value: string; label: string }[],
@@ -21,20 +22,19 @@ const isCategoriesMatched = (
 
 const RecipesList = () => {
   const navigate = useNavigate();
-  const recipes = useAppSelector((state) => state.recipes.recipes);
-  const loading = useAppSelector((state) => state.recipes.loading);
-  const nameFilter = useAppSelector((state) => state.filters.name);
-  const categoriesFilter = useAppSelector((state) => state.filters.categories);
+  const { state, loading } = useContext(RecipesContext);
+  const { name: nameFilter, categories: categoriesFilter } =
+    useContext(FiltersContext);
 
   const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
   useEffect(() => {
-    const recs = recipes.filter(
+    const recs = state.recipes.filter(
       (recipe) =>
         toLower(recipe.title).includes(toLower(nameFilter)) &&
         isCategoriesMatched(categoriesFilter, recipe.categories),
     );
     setFilteredRecipes(recs);
-  }, [recipes, nameFilter, categoriesFilter]);
+  }, [state.recipes, nameFilter, categoriesFilter]);
 
   const recipeSelectedHandler = (id: number) => {
     void navigate("/recipes/" + id.toString());

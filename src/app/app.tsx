@@ -1,21 +1,40 @@
-import { useContext, useEffect } from "react";
-
+import FirebaseProvider from "@/firebase/firebaseContext";
 import Layout from "../components/hoc/layout";
 import RoutesList from "./routes";
-import { FirebaseContext } from "../firebase/firebaseContext";
+import { useContext } from "react";
+import { UserContext, UserProvider } from "@/components/context/userContext";
+import {
+  RecipesContext,
+  RecipesProvider,
+} from "@/components/context/recipesContext";
+import { BrowserRouter } from "react-router-dom";
+import { FiltersProvider } from "@/components/context/filtersContext";
 
 const App = () => {
-  // Firebase setup
-  const firebaseApi = useContext(FirebaseContext);
-  useEffect(() => {
-    firebaseApi.api.setRecipeListener();
-  }, [firebaseApi]);
+  const { setUsername } = useContext(UserContext);
+  const { setData } = useContext(RecipesContext);
 
   return (
-    <Layout>
-      <RoutesList />
-    </Layout>
+    <FirebaseProvider onUsername={setUsername} onDataChange={setData}>
+      <Layout>
+        <RoutesList />
+      </Layout>
+    </FirebaseProvider>
   );
 };
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <BrowserRouter>
+      <UserProvider>
+        <RecipesProvider>
+          <FiltersProvider>
+            <App />
+          </FiltersProvider>
+        </RecipesProvider>
+      </UserProvider>
+    </BrowserRouter>
+  );
+};
+
+export default AppWrapper;

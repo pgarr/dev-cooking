@@ -1,10 +1,13 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Database, getDatabase, onValue, ref } from "firebase/database";
-import { createContext, PropsWithChildren, useCallback } from "react";
-import { setData, startLoading } from "../store/slices/recipesSlice";
-import { prepareData } from "./helpers";
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import firebaseConfig from "./firebaseConfig";
-import { useAppDispatch } from "../store/store";
 import { Recipe } from "../types";
 import {
   getAuth,
@@ -14,8 +17,6 @@ import {
   signOut,
   UserCredential,
 } from "firebase/auth";
-import { clearUsername, setUsername } from "../store/slices/authSlice";
-import { noop } from "lodash";
 
 const noopAsync = () => {
   return Promise.resolve(undefined);
@@ -29,9 +30,6 @@ const auth = getAuth(app);
 interface FirebaseApi {
   app: FirebaseApp;
   database: Database;
-  api: {
-    setRecipeListener: () => void;
-  };
   auth: {
     signInWithGoogle: () => Promise<UserCredential | undefined>;
     logout: () => Promise<void>;
@@ -41,52 +39,71 @@ interface FirebaseApi {
 export const FirebaseContext = createContext<FirebaseApi>({
   app,
   database,
-  api: { setRecipeListener: noop },
   auth: { signInWithGoogle: noopAsync, logout: noopAsync },
 });
 
-const FirebaseProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const dispatch = useAppDispatch();
+type FirebaseProviderProps = PropsWithChildren<{
+  onUsername?: (username: string | null) => void;
+  onDataChange?: (data: Recipe[]) => void;
+}>;
 
+const FirebaseProvider = ({
+  children,
+  onUsername,
+  onDataChange,
+}: FirebaseProviderProps) => {
   const setRecipeListener = useCallback(() => {
-    dispatch(startLoading());
     const recipesRef = ref(database, "recipes");
-    onValue(recipesRef, (snapshot) => {
+    return onValue(recipesRef, (snapshot) => {
       const recipes = snapshot.val() as Recipe[];
-      const data = prepareData(recipes);
-      dispatch(setData(data));
+      onDataChange?.(recipes);
     });
-  }, [dispatch]);
+  }, [onDataChange]);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      dispatch(setUsername(user.displayName));
-    } else {
-      dispatch(clearUsername());
-    }
-  });
+  useEffect(() => {
+    const unsubscribe = setRecipeListener();
+    return () => {
+      unsubscribe();
+    };
+  }, [setRecipeListener]);
 
-  const signInWithGoogle = async () => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        onUsername?.(user.displayName);
+      } else {
+        onUsername?.(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [onUsername]);
+
+  const signInWithGoogle = useCallback(async () => {
     try {
       return await signInWithPopup(auth, googleProvider);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
-  async function logout() {
+  const logout = useCallback(async () => {
     await signOut(auth);
-  }
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      app,
+      database,
+      auth: { signInWithGoogle, logout },
+    }),
+    [signInWithGoogle, logout],
+  );
 
   return (
-    <FirebaseContext.Provider
-      value={{
-        app,
-        database,
-        api: { setRecipeListener },
-        auth: { signInWithGoogle, logout },
-      }}
-    >
+    <FirebaseContext.Provider value={value}>
       {children}
     </FirebaseContext.Provider>
   );
