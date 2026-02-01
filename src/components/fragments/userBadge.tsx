@@ -26,7 +26,7 @@ const UserBadge = () => {
         <div className="flex flex-row items-center gap-2 justify-baseline mt-3">
           <span className="">{username}</span>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <Button
                 size="xs"
                 variant="ghost"
