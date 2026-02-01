@@ -28,6 +28,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage --watch=false"
