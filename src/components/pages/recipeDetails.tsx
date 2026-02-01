@@ -2,11 +2,12 @@ import { useParams } from "react-router";
 
 import LoadingContainer from "../hoc/loadingContainer";
 import RecipeCard from "../fragments/recipeCard";
-import { useAppSelector } from "../../store/store";
+import { useContext } from "react";
+import { RecipesContext } from "../context/recipesContext";
 
 const RecipeDetails = () => {
-  const recipes = useAppSelector((state) => state.recipes.recipes);
-  const loading = useAppSelector((state) => state.recipes.loading);
+  const { state, loading } = useContext(RecipesContext);
+  const recipes = state.recipes;
   const params = useParams();
   const id = Number(params.id);
   const selectedRecipe = recipes.find((recipe) => recipe.id === id);

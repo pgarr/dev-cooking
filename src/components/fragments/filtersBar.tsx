@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Search } from "lucide-react";
 
@@ -8,17 +8,19 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Button } from "@/components/ui/button";
-import { useAppDispatch, useAppSelector } from "@/store/store";
 import { CategoryOption } from "@/types";
-import { filterCategories, filterName } from "@/store/slices/filtersSlice";
+import { RecipesContext } from "../context/recipesContext";
+import { FiltersContext } from "../context/filtersContext";
 
 const FiltersBar = () => {
-  const dispatch = useAppDispatch();
-  const nameFilter = useAppSelector((state) => state.filters.name);
-  const categoriesList = useAppSelector((state) => state.recipes.categories);
-  const categoriesSelected = useAppSelector(
-    (state) => state.filters.categories,
-  );
+  const { state } = useContext(RecipesContext);
+  const categoriesList = state.categories;
+  const {
+    name: nameFilter,
+    categories: categoriesSelected,
+    filterCategories,
+    filterName,
+  } = useContext(FiltersContext);
 
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ const FiltersBar = () => {
   const onFilterNameChange: React.ChangeEventHandler<HTMLInputElement> = (
     event,
   ) => {
-    dispatch(filterName(event.target.value));
+    filterName(event.target.value);
   };
 
   const toggleCategory = (categoryValue: string) => {
@@ -52,7 +54,7 @@ const FiltersBar = () => {
         : categoriesSelected;
     }
 
-    dispatch(filterCategories(newSelectedCategories));
+    filterCategories(newSelectedCategories);
   };
 
   useEffect(() => {

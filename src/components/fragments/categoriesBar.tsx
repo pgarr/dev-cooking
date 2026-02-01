@@ -12,9 +12,7 @@ const CategoriesBar = ({ categories, className }: CategoriesBarProps) => {
   return (
     <div className={className}>
       {localCategories.map((category, index) => {
-        return (
-          <CategoryIcon categoryName={category} key={index}></CategoryIcon>
-        );
+        return <CategoryIcon categoryName={category} key={index} />;
       })}
     </div>
   );

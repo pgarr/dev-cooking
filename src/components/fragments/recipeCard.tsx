@@ -13,7 +13,7 @@ interface RecipeCardProps {
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   return (
     <>
-      <h2>{recipe.title}</h2>
+      <h2 className="font-bold text-3xl mb-3">{recipe.title}</h2>
       <CategoriesBar categories={recipe.categories} className="inline mr-5" />
       {recipe.time ? (
         <span>
