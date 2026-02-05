@@ -20,7 +20,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           <FontAwesomeIcon icon={faClock} /> {recipe.time}&apos;
         </span>
       ) : null}
-      <div className="flex flex-col md:flex-row gap-12 mt-10 md:items-start items-center">
+      <div className="flex flex-col md:flex-row gap-12 mt-10 md:items-start items-stretch">
         {recipe.ingredients.length > 0 ? (
           <IngredientList ingredients={recipe.ingredients} />
         ) : null}

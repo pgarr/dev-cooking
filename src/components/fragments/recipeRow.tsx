@@ -11,7 +11,9 @@ interface RecipeRowProps {
 const RecipeRow = ({ title, time, categories, onClick }: RecipeRowProps) => {
   return (
     <TableRow onClick={onClick} className="cursor-pointer">
-      <TableCell>{title}</TableCell>
+      <TableCell className="text-wrap whitespace-break-spaces">
+        {title}
+      </TableCell>
       <TableCell>
         <CategoriesBar categories={categories} />
       </TableCell>

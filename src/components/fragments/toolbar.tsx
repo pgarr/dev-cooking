@@ -25,7 +25,7 @@ const Toolbar = () => {
   };
 
   return (
-    <div className="w-full flex flex-row py-2 px-15 justify-between h-8">
+    <div className="w-full flex flex-row py-2 px-2 md:px-15 justify-between h-8">
       <div className="flex flex-row gap-10">
         <BrandIcon />
         <Button
