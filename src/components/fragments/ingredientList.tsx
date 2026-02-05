@@ -9,12 +9,12 @@ interface IngredientListProps {
 const IngredientList = ({ ingredients }: IngredientListProps) => {
   const { t } = useTranslation();
   return (
-    <div className="mx-5">
+    <div>
       <h3 className="font-bold text-2xl mb-3">{t("ingredients_head")}</h3>
       <div className="flex min-w-sm flex-col">
         {ingredients.map((ingredient, index) => {
           return (
-            <div className="mb-4 flex flex-row" key={index}>
+            <div className="mb-3 flex flex-row" key={index}>
               <div className="flex-3">{ingredient.title}</div>
               <div className="flex-1">{`${ingredient.amount || ""} ${toLower(
                 ingredient.unit,
